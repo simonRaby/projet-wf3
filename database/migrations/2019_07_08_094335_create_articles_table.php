@@ -17,19 +17,19 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('ranks_id');
             $table->foreign('ranks_id')->references('id')->on('ranks');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->unsignedBigInteger('categories_id');
+            $table->foreign('categories_id')->references('id')->on('categories');
             $table->unsignedBigInteger('sizes_id');
             $table->foreign('sizes_id')->references('id')->on('sizes');
             $table->unsignedBigInteger('partners_id');
             $table->foreign('partners_id')->references('id')->on('partners');
             $table->unsignedBigInteger('genders_id');
             $table->foreign('genders_id')->references('id')->on('genders');
+            $table->unsignedBigInteger('collects_id');
+            $table->foreign('collects_id')->references('id')->on('collects');
             $table->string('name');
-            $table->string('color');
-            $table->integer('quantity');
-
             $table->string('img')->nullable();
+            $table->boolean('is_collect')->default(false);
             $table->timestamps();
         });
     }

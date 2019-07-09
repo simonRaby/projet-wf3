@@ -17,7 +17,7 @@ class CreateCollectsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('partners_id');
             $table->foreign('partners_id')->references('id')->on('partners');
-            $table->integer('statut')->default(0);
+            $table->boolean('statut')->default(false);
             $table->timestamps();
         });
     }
