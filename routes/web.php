@@ -26,3 +26,6 @@ Route::get('/contact', 'ContactController@index');
 Route::post('/contact', 'ContactController@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/list-collect', 'ListCollectController@index');
+Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
