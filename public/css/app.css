@@ -10644,3 +10644,11 @@ a.text-dark:focus {
   }
 }
 
+.navbar-brand img {
+  height: 120px;
+}
+
+.navbar-collapse {
+  align-self: flex-end;
+}
+
