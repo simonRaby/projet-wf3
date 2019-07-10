@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +14,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
+
+Auth::routes();
+Auth::routes(['register' => false]);
+
+Route::get('/about', 'AboutController@index');
+
+Route::get('/contact', 'ContactController@index');
+Route::post('/contact', 'ContactController@store');
+
+Route::get('/home', 'HomeController@index')->name('home');
