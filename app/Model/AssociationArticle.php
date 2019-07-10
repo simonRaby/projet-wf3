@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ArticleCollect extends Model
+class AssociationArticle extends Model
 {
     //
 }
