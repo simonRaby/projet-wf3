@@ -15,8 +15,8 @@ class CreateSizesTable extends Migration
     {
         Schema::create('sizes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->unsignedBigInteger('categories_id');
+            $table->foreign('categories_id')->references('id')->on('categories');
             $table->string('size');
             $table->timestamps();
         });
