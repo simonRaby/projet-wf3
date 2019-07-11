@@ -2,9 +2,9 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
 
-class AssociationArticle extends Pivot
+class AssociationArticle extends Model
 {
     protected $table = 'associations_articles';
 }

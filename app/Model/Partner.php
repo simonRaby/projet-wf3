@@ -16,4 +16,9 @@ class Partner extends Model
     {
         return $this->belongsTo(VilleFrance::class, 'ville_insee', 'ville_code_commune');
     }
+
+    public function  article()
+    {
+        return $this->hasMany(Article::class);
+    }
 }
