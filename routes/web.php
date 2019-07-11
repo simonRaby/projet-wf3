@@ -29,3 +29,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/list-collect', 'ListCollectController@index');
 Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
+
+Route::get('/validate-collect', 'ValidateCollectController@index');
