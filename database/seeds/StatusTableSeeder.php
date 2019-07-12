@@ -1,9 +1,9 @@
 <?php
 
-use App\Model\Collect;
+use App\Model\status;
 use Illuminate\Database\Seeder;
 
-class CollectsTableSeeder extends Seeder
+class StatusTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,17 +12,16 @@ class CollectsTableSeeder extends Seeder
      */
     public function run()
     {
-
         $data[0] =[
-            'partner_id'    => 1,
-            'status_id'     => 2,
-            'collected_at'       => now(),
+            'label'         => 'waiting',
             'created_at'     => now(),
         ];
         $data[1] =[
-            'partner_id'    => 4,
-            'status_id'     => 3,
-            'collected_at'       => now(),
+            'label'         => 'rejected',
+            'created_at'     => now(),
+        ];
+        $data[2] =[
+            'label'         => 'Collected',
             'created_at'     => now(),
         ];
 
@@ -32,7 +31,7 @@ class CollectsTableSeeder extends Seeder
 
 
         for($i=0;$i < count($data);$i++){
-            Collect::insert($data[$i]);
+            Status::insert($data[$i]);
         }
     }
 }

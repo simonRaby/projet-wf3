@@ -15,21 +15,19 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('ranks_id');
-            $table->foreign('ranks_id')->references('id')->on('ranks');
-            $table->unsignedBigInteger('categories_id');
-            $table->foreign('categories_id')->references('id')->on('categories');
-            $table->unsignedBigInteger('sizes_id');
-            $table->foreign('sizes_id')->references('id')->on('sizes');
-            $table->unsignedBigInteger('partners_id');
-            $table->foreign('partners_id')->references('id')->on('partners');
-            $table->unsignedBigInteger('genders_id');
-            $table->foreign('genders_id')->references('id')->on('genders');
-            $table->unsignedBigInteger('collects_id');
-            $table->foreign('collects_id')->references('id')->on('collects');
+            $table->unsignedBigInteger('rank_id');
+            $table->foreign('rank_id')->references('id')->on('ranks');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('marque_id');
+            $table->foreign('marque_id')->references('id')->on('marques');
+            $table->unsignedBigInteger('gender_id');
+            $table->foreign('gender_id')->references('id')->on('genders');
+            $table->unsignedBigInteger('collect_id');
+            $table->foreign('collect_id')->references('id')->on('collects');
             $table->string('name');
             $table->string('img')->nullable();
-            $table->boolean('is_collect')->default(false);
+            $table->string('qrcode_img')->nullable();
             $table->timestamps();
         });
     }
