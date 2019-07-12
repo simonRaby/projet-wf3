@@ -31,3 +31,4 @@ Route::get('/list-collect', 'ListCollectController@index');
 Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
 
 Route::get('/validate-collect', 'ValidateCollectController@index');
+Route::post('/validate-collect', 'ValidateCollectController@store');

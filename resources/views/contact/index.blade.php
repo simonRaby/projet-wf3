@@ -72,9 +72,19 @@
                 <h3>Nous sommes ouvert</h3>
                 <p>Du Mardi au samedi.</p>
                 <p>De 10h à 12h30 et 13h30 à 19h</p>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d707.313223096162!2d-0.5719484707415151!3d44.836782949695525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527cf1039b077%3A0x3b282a7a2fc00496!2s1+Rue+Bouqui%C3%A8re%2C+33000+Bordeaux!5e0!3m2!1sfr!2sfr!4v1562747392345!5m2!1sfr!2sfr" width="400" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+                {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d707.313223096162!2d-0.5719484707415151!3d44.836782949695525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527cf1039b077%3A0x3b282a7a2fc00496!2s1+Rue+Bouqui%C3%A8re%2C+33000+Bordeaux!5e0!3m2!1sfr!2sfr!4v1562747392345!5m2!1sfr!2sfr" width="400" height="250" frameborder="0" style="border:0" allowfullscreen></iframe> --}}
             </div>
         </div>
 
     </div>
+@endsection
+
+@section('script')
+<script>
+    $(function() {
+    //alert('1');
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+    });
+</script>
+
 @endsection

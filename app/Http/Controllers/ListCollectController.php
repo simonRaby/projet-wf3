@@ -25,8 +25,8 @@ class ListCollectController extends Controller
         foreach ($collects as $collect) {
             $qty = 0;
             foreach ($collect->article as $article) {
-                foreach ($article->color as $color) {
-                    $qty += $color->pivot->quantity;
+                foreach ($article->associationArticle as $assoc) {
+                    $qty += $assoc->quantity;
                 }
             }
             $collect->quantity = $qty;

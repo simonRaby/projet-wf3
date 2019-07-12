@@ -3,6 +3,12 @@
 @section('content')
 <div class="container">
     <h1>Liste des collectes en attentes</h1>
+     {{-- Message en session flash si le mail c'esy bien envoyé --}}
+     @if(session()->has('successMessage'))
+        <div class="alert alert-success">
+            {{ session('successMessage') }}
+        </div>
+    @endif
     <table class="table table-bordered table-striped" id="collects-table">
             <thead>
                 <tr>
@@ -21,6 +27,7 @@
 
 @section('script')
     <script>
+        // Fonction de creation de tableau en utilisa  nt le package datatable de yajra
         $(function() {
             let table =  $('#collects-table').DataTable({
                 processing: true,
@@ -70,10 +77,9 @@
                         }
                     }
             });
-
+            // fonction de redirection on click avec l'id de la collect passé en get
             $('#collects-table tbody').on( 'click', 'button', function () {
                 var data = table.row( $(this).parents('tr') ).data();
-                console.log( data['id']);
                 window.location.replace("/validate-collect?id="+data['id']);
             } );
 
