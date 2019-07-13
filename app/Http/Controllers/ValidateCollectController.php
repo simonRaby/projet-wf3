@@ -17,7 +17,6 @@ class ValidateCollectController extends Controller
         $x = 0;
 
         foreach ($collect as $article) {
-
             foreach ($article->associationArticle as $assoc) {
                 $articles[$x]['id'] = $assoc->id;
                 $articles[$x]['name'] = $article->name;
@@ -83,6 +82,54 @@ class ValidateCollectController extends Controller
 
         session()->flash('successMessage',  'Collect validé');
 
+        pdfCollect('stream', $collectId);
+
         return view('list-collect.index');
+    }
+
+    public function pdfCollect($action, $collectId){
+
+        $collect = Collect::find($collectId);
+        $partner = $collect->partner;
+        $articles = $collect->article;
+        $collectPdf['collectedAt'] = $collect->collected_at;
+        $collectPdf['partnerName'] = $partner->name;
+        $collectPdf['partnerAdress'] = $partner->address;
+        $collectPdf['partnerTel'] = $partner->tel;
+        $collectPdf['partnerCp'] =  $partner->villeFrance->ville_code_postal;
+        $collectPdf['partnerCity'] = $partner->villeFrance->ville_nom_reel;
+        if($collect->status == 3){
+            $collectPdf['articles'] = false;
+        }elseif ($collect->status == 3) {
+            $i = 1;
+            foreach ($articles as $article) {
+                foreach ($article->associationArticle as $assoc) {
+                     $collectPdf['articles'][$i]['name'] = $article->name;
+                     $collectPdf['articles'][$i]['category'] = $article->category->name;
+                     $collectPdf['articles'][$i]['gender'] = $article->gender->name;
+                     $collectPdf['articles'][$i]['size'] = $assoc->size->size;
+                     $collectPdf['articles'][$i]['color'] = $assoc->color->color;
+                     $collectPdf['articles'][$i]['quantity'] = $assoc->quantity;
+                     $collectPdf['articles'][$i]['quantityCollected'] = $assoc->quantity_collected?:0;
+                    $i++;
+                }
+            }
+        }
+
+        $pdf = PDF::loadView('layouts.pdf-collect', $collectPdf);
+        switch ($action) {
+            case 'save':
+                return $pdf->save('myfile.pdf');
+                break;
+            case 'stream':
+                return $pdf->stream();
+                break;
+            case 'download':
+                return $pdf->download('invoice.pdf');
+                break;
+            default:
+                return false;
+                break;
+        }
     }
 }
