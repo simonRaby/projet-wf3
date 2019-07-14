@@ -47,6 +47,34 @@
                     </ul>
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ml-auto">
+
+                        @if (Auth::user->type  == 'admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listpartner">Liste des partnenaire</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listMember">Liste des membres</a>
+                            </li>
+                        @endif
+                        @if (Auth::user->type  == 'partner')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/account">Mon compte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/newCollect">Créer une collecte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/collectHistory">Historique des collectes</a>
+                            </li>
+                        @endif
+                        @if (Auth::user->type  == 'member')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listCollect">Collectes en attente</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listArticle">Liste des article</a>
+                            </li>
+                        @endif
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
