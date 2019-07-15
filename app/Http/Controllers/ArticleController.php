@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    public function index(request $request){
+    public function index(request $request)
+    {
         $id = $request->id;
         $article = Article::find($id);
 
@@ -22,7 +23,7 @@ class ArticleController extends Controller
             $articles['id'][$assoc->color->label][$assoc->size->label] = $assoc->id;
         }
 
-//        dd($articles);
+        //        dd($articles);
         return view('article.index')->with('articles', $articles);
     }
 

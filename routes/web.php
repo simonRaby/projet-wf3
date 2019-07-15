@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home.index');
 });
-Route::get('/scan', 'ScanController@index' );
+Route::get('/scan', 'ScanController@index');
 
 Auth::routes();
 Auth::routes(['register' => false]);
@@ -28,8 +28,14 @@ Route::post('/contact', 'ContactController@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/scan', 'ScanController@index' );
+Route::get('/list-collect', 'ListCollectController@index');
+Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
+
+Route::get('/validate-collect', 'ValidateCollectController@index');
+Route::post('/validate-collect', 'ValidateCollectController@store');
 
 Route::get('/article', 'ArticleController@index' )->name('article');
 Route::post('/article', 'ArticleController@vendu' );
 
+Route::get('/scan', 'ScanController@index');
+Route::get('/article', 'ArticleController@index');
