@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Liste des collectes en attentes</h1>
+    <h1>Liste des collectes en attente</h1>
      {{-- Message en session flash si le mail c'esy bien envoyé --}}
      @if(session()->has('successMessage'))
         <div class="alert alert-success">
