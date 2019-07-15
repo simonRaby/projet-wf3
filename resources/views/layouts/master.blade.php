@@ -16,7 +16,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('css')
@@ -38,15 +38,43 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/about">A propos</a>
                         </li>
-                         <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="/scan">scannez pour trouver</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="/contact">Contact</a>
                         </li>
                     </ul>
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ml-auto">
+
+                        @if (Auth::user->type  == 'admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listpartner">Liste des partnenaire</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listMember">Liste des membres</a>
+                            </li>
+                        @endif
+                        @if (Auth::user->type  == 'partner')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/account">Mon compte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/newCollect">Créer une collecte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/collectHistory">Historique des collectes</a>
+                            </li>
+                        @endif
+                        @if (Auth::user->type  == 'member')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listCollect">Collectes en attente</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listArticle">Liste des article</a>
+                            </li>
+                        @endif
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -80,9 +108,12 @@
             @yield('content')
         </main>
     </div>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js" defer></script>
 
-    <script src="https://kit.fontawesome.com/faba26a06a.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
     @yield('script')
     @yield('ajax')
 </body>
