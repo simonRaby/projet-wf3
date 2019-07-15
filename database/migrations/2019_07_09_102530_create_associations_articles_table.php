@@ -15,13 +15,18 @@ class CreateAssociationsArticlesTable extends Migration
     {
         Schema::create('associations_articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('articles_id');
-            $table->foreign('articles_id')->references('id')->on('articles');
-            $table->unsignedBigInteger('sizes_id');
-            $table->foreign('sizes_id')->references('id')->on('sizes');
-            $table->unsignedBigInteger('colors_id');
-            $table->foreign('colors_id')->references('id')->on('colors');
+            $table->unsignedBigInteger('article_id');
+            $table->foreign('article_id')->references('id')->on('articles');
+            $table->unsignedBigInteger('size_id');
+            $table->foreign('size_id')->references('id')->on('sizes');
+            $table->unsignedBigInteger('color_id');
+            $table->foreign('color_id')->references('id')->on('colors');
             $table->bigInteger('quantity');
+            $table->bigInteger('quantity_collected')->nullable();
+            $table->bigInteger('stock')->nullable();
+            $table->boolean('is_rejected')->default(false);
+            $table->boolean('is_error')->default(false);
+            $table->boolean('is_collected')->default(false);
             $table->timestamps();
         });
     }

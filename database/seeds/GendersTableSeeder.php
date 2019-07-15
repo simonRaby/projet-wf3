@@ -14,13 +14,16 @@ class GendersTableSeeder extends Seeder
     {
 
         $data[0]= [
-            'name' => 'Homme',
+            'label' => 'Homme',
+            'created_at'     => now(),
         ];
         $data[1]= [
-            'name' => 'Femme',
+            'label' => 'Femme',
+            'created_at'     => now(),
         ];
         $data[2]= [
-            'name' => 'Autres',
+            'label' => 'Autres',
+            'created_at'     => now(),
         ];
 
         for($i=0; $i <3; $i++){

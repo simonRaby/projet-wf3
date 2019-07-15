@@ -16,6 +16,7 @@ class CreatePartnersTable extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('siret');
             $table->string('tel');
             $table->string('address');
             $table->string('ville_insee');
