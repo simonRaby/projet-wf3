@@ -13,37 +13,48 @@ class MarqueTableSeeder extends Seeder
     public function run()
     {
        $data[0]=[
-           'label' => 'Nike'
+           'label' => 'Nike',
+           'created_at'     => now(),
        ];
         $data[1]=[
-            'label' => 'Adidas'
+            'label' => 'Adidas',
+            'created_at'     => now(),
         ];
         $data[2]=[
-            'label' => 'Pumas'
+            'label' => 'Pumas',
+            'created_at'     => now(),
         ];
         $data[3]=[
-            'label' => 'Levis'
+            'label' => 'Levis',
+            'created_at'     => now(),
         ];
         $data[4]=[
-            'label' => 'Kaporal'
+            'label' => 'Kaporal',
+            'created_at'     => now(),
         ];
         $data[5]=[
-            'label' => 'Gucci'
+            'label' => 'Gucci',
+            'created_at'     => now(),
         ];
         $data[6]=[
-            'label' => 'Louis Viton'
+            'label' => 'Louis Viton',
+            'created_at'     => now(),
         ];
         $data[7]=[
-            'label' => 'O\'Neill'
+            'label' => 'O\'Neill',
+            'created_at'     => now(),
         ];
         $data[8]=[
-            'label' => 'Quisilver'
+            'label' => 'Quisilver',
+            'created_at'     => now(),
         ];
         $data[9]=[
-            'label' => 'Reebok'
+            'label' => 'Reebok',
+            'created_at'     => now(),
         ];
         $data[10]=[
-            'label' => 'Umbro'
+            'label' => 'Umbro',
+            'created_at'     => now(),
         ];
 
 

@@ -15,10 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('partners_id')->nullable();
-            $table->foreign('partners_id')->references('id')->on('partners');
-            $table->unsignedBigInteger('roles_id');
-            $table->foreign('roles_id')->references('id')->on('roles');
+            $table->unsignedBigInteger('partner_id')->nullable();
+            $table->foreign('partner_id')->references('id')->on('partners');
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email')->unique();
