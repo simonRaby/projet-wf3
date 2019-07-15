@@ -40,7 +40,7 @@
                     { data: 'partner.ville_france.ville_nom_reel', name: 'city' },
                     { data: 'quantity', name: 'quantity' },
                     { data: 'created_at', name: 'created_at' },
-                    { data: 'actiob', name: 'action' }
+                    { data: 'action', name: 'action' }
                 ],
                 columnDefs: [ {
                         "targets": -1,
