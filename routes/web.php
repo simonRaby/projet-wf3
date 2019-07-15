@@ -30,5 +30,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/scan', 'ScanController@index' );
 
-Route::get('/article', 'ArticleController@index' );
+Route::get('/article', 'ArticleController@index' )->name('article');
+Route::post('/article', 'ArticleController@vendu' );
 
