@@ -80,18 +80,20 @@ class ValidateCollectController extends Controller
             $collect->is_error = 1;
         }
         //$collect->save();
-
-        session()->flash('successMessage',  'Collect validé');
         $collectId = 2;
+        session()->flash('successMessage',  'Collect validé');
+        session()->flash('collectId', $collectId);
 
-        return $this->pdfCollect('download', $collectId);
 
-        return view('list-collect.index');
+        //return $this->pdfCollect('download', $collectId);
+
+        return redirect()->route('listCollect');
     }
 
-    public function pdfCollect($action, $collectId)
+    public function pdfCollect(Request $request)
     {
-
+        $action = $request->action;
+        $collectId = $request->collectId;
 
         $collect = Collect::find($collectId);
         $partner = $collect->partner;
@@ -110,16 +112,15 @@ class ValidateCollectController extends Controller
                 foreach ($article->associationArticle as $assoc) {
                     $collectPdf['articles'][$i]['name'] = $article->name;
                     $collectPdf['articles'][$i]['category'] = $article->category->name;
-                    $collectPdf['articles'][$i]['gender'] = $article->gender->name;
-                    $collectPdf['articles'][$i]['size'] = $assoc->size->size;
-                    $collectPdf['articles'][$i]['color'] = $assoc->color->color;
+                    $collectPdf['articles'][$i]['gender'] = $article->gender->label;
+                    $collectPdf['articles'][$i]['size'] = $assoc->size->label;
+                    $collectPdf['articles'][$i]['color'] = $assoc->color->label;
                     $collectPdf['articles'][$i]['quantity'] = $assoc->quantity;
                     $collectPdf['articles'][$i]['quantityCollected'] = $assoc->quantity_collected ?: 0;
                     $i++;
                 }
             }
         }
-
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('layouts.pdf-collect', $collectPdf);

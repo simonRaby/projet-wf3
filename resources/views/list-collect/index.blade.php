@@ -7,7 +7,10 @@
      @if(session()->has('successMessage'))
         <div class="alert alert-success">
             {{ session('successMessage') }}
+            <p>Télécharger le bon de collecte au format pdf</p>
+            <a href="/bonCollectPdf?action=download&collectId={{ session('collectId') }}" class="btn btn-primary">Télécharger</a>
         </div>
+
     @endif
     <table class="table table-bordered table-striped" id="collects-table">
             <thead>
