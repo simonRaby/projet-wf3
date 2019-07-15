@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Collect;
 use App\Model\AssociationArticle;
+use PDF;
 
 class ValidateCollectController extends Controller
 {
@@ -21,9 +22,9 @@ class ValidateCollectController extends Controller
                 $articles[$x]['id'] = $assoc->id;
                 $articles[$x]['name'] = $article->name;
                 $articles[$x]['categorie'] = $article->category->name;
-                $articles[$x]['gender'] = $article->gender->name;
-                $articles[$x]['size'] = $assoc->size->size;
-                $articles[$x]['color'] = $assoc->color->color;
+                $articles[$x]['gender'] = $article->gender->label;
+                $articles[$x]['size'] = $assoc->size->label;
+                $articles[$x]['color'] = $assoc->color->label;
                 $articles[$x]['quantity'] = $assoc->quantity;
                 $x++;
             }
@@ -46,7 +47,7 @@ class ValidateCollectController extends Controller
             foreach ($rejected as $id => $value) {
                 $association = AssociationArticle::find($id);
                 $association->is_rejected = 1;
-                $association->save();
+                //$association->save();
 
                 $toBeBanned[] = $id;
             }
@@ -63,31 +64,34 @@ class ValidateCollectController extends Controller
                     $association->quantity_collected = $qtyCollected;
                     $association->is_error = 1;
                 }
-                $association->save();
+                // $association->save();
             }
         }
 
         $collect = Collect::find($collectId);
         if (!$allRejected) {
             $collect->collected_at = $date;
-            $collect->status = 2; //Change le status de la collect a collecté
+            $collect->status_id = 2; //Change le status de la collect a collecté
         } else {
             $collectError = true;
-            $collect->status = 3; //Change le status de la collect a rejeté
+            $collect->status_id = 3; //Change le status de la collect a rejeté
         }
         if ($collectError) {
             $collect->is_error = 1;
         }
-        $collect->save();
+        //$collect->save();
 
         session()->flash('successMessage',  'Collect validé');
+        $collectId = 2;
 
-        pdfCollect('stream', $collectId);
+        return $this->pdfCollect('download', $collectId);
 
         return view('list-collect.index');
     }
 
-    public function pdfCollect($action, $collectId){
+    public function pdfCollect($action, $collectId)
+    {
+
 
         $collect = Collect::find($collectId);
         $partner = $collect->partner;
@@ -98,34 +102,37 @@ class ValidateCollectController extends Controller
         $collectPdf['partnerTel'] = $partner->tel;
         $collectPdf['partnerCp'] =  $partner->villeFrance->ville_code_postal;
         $collectPdf['partnerCity'] = $partner->villeFrance->ville_nom_reel;
-        if($collect->status == 3){
-            $collectPdf['articles'] = false;
-        }elseif ($collect->status == 3) {
+        if ($collect->status_id == 2) {
+            $collectPdf['articles'] = '';
+        } elseif ($collect->status_id == 3) {
             $i = 1;
             foreach ($articles as $article) {
                 foreach ($article->associationArticle as $assoc) {
-                     $collectPdf['articles'][$i]['name'] = $article->name;
-                     $collectPdf['articles'][$i]['category'] = $article->category->name;
-                     $collectPdf['articles'][$i]['gender'] = $article->gender->name;
-                     $collectPdf['articles'][$i]['size'] = $assoc->size->size;
-                     $collectPdf['articles'][$i]['color'] = $assoc->color->color;
-                     $collectPdf['articles'][$i]['quantity'] = $assoc->quantity;
-                     $collectPdf['articles'][$i]['quantityCollected'] = $assoc->quantity_collected?:0;
+                    $collectPdf['articles'][$i]['name'] = $article->name;
+                    $collectPdf['articles'][$i]['category'] = $article->category->name;
+                    $collectPdf['articles'][$i]['gender'] = $article->gender->name;
+                    $collectPdf['articles'][$i]['size'] = $assoc->size->size;
+                    $collectPdf['articles'][$i]['color'] = $assoc->color->color;
+                    $collectPdf['articles'][$i]['quantity'] = $assoc->quantity;
+                    $collectPdf['articles'][$i]['quantityCollected'] = $assoc->quantity_collected ?: 0;
                     $i++;
                 }
             }
         }
 
-        $pdf = PDF::loadView('layouts.pdf-collect', $collectPdf);
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('layouts.pdf-collect', $collectPdf);
+
         switch ($action) {
             case 'save':
-                return $pdf->save('myfile.pdf');
+                return $pdf->save('collect.pdf');
                 break;
             case 'stream':
                 return $pdf->stream();
                 break;
             case 'download':
-                return $pdf->download('invoice.pdf');
+                return $pdf->download('collect.pdf');
                 break;
             default:
                 return false;

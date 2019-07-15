@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Bon de collect</title>
 </head>
 <body>
@@ -18,12 +17,12 @@
                     33000 Bordeaux</p>
                 </div>
                 <div class="col_6">
-                    <h2>{{ $collect['partnerName'] }}</h2>
+                    <h2>{{ $partnerName }}</h2>
                     <h3>Téléphone</h3>
-                    <p>{{ $collect['partnerTel'] }}</p>
+                    <p>{{ $partnerTel }}</p>
                     <h3>Adresse</h3>
-                    <p>{{ $collect['partnerAdress'] }}<br>
-                    {{ $collect['partnerCp'] }} {{ $collect['partnerCity'] }}</p>
+                    <p>{{ $partnerAdress }}<br>
+                    {{ $partnerCp }} {{ $partnerCity }}</p>
 
                 </div>
                 <div class="row">
@@ -39,9 +38,10 @@
                             <th scope="col">Quantitee récupré</th>
                         </thead>
                         <tbody>
-                            @if ($collect['articles'])
-                                @foreach ($collect['articles'] as $article)
-                                    <th scope="row">{{ $i }}</th>
+                            @if (!empty($articles))
+                            {{$i = 0}}
+                                @foreach ($articles as $article)
+                                    <th scope="row">{{ $i++ }}</th>
                                     <td>{{ $article['name']}}</td>
                                     <td>{{ $article['category']}}</td>
                                     <td>{{ $article['gender']}}</td>
@@ -57,7 +57,8 @@
                         </tbody>
                     </table>
                 </div>
-            <div>Collecté le {{ $collect['collectedAt'] }}</div>
+            <div>Collecté le {{ $collectedAt }}</div>
             </div>
-        </div></body>
+        </div>
+    </body>
 </html>

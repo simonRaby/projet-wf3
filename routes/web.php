@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home.index');
 });
+Route::get('/scan', 'ScanController@index');
 
 Auth::routes();
 Auth::routes(['register' => false]);
@@ -32,3 +33,6 @@ Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcol
 
 Route::get('/validate-collect', 'ValidateCollectController@index');
 Route::post('/validate-collect', 'ValidateCollectController@store');
+
+Route::get('/scan', 'ScanController@index');
+Route::get('/article', 'ArticleController@index');

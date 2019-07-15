@@ -38,16 +38,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/about">A propos</a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="/scan">scannez pour trouver</a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/contact">Contact</a>
                         </li>
                     </ul>
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ml-auto">
-
+{{--
                         @if (Auth::user->type  == 'admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="/listpartner">Liste des partnenaire</a>
@@ -74,7 +74,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/listArticle">Liste des article</a>
                             </li>
-                        @endif
+                        @endif --}}
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

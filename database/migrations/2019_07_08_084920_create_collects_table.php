@@ -15,9 +15,12 @@ class CreateCollectsTable extends Migration
     {
         Schema::create('collects', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('partners_id');
-            $table->foreign('partners_id')->references('id')->on('partners');
-            $table->boolean('statut')->default(false);
+            $table->unsignedBigInteger('partner_id');
+            $table->foreign('partner_id')->references('id')->on('partners');
+            $table->unsignedBigInteger('status_id')->default(1);
+            $table->foreign('status_id')->references('id')->on('status');
+            $table->boolean('is_error')->default(false);
+            $table->dateTime('collected_at')->nullable();
             $table->timestamps();
         });
     }

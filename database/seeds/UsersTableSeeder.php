@@ -14,34 +14,38 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
        $data[0]=[
-           'roles_id' => '1',
+           'role_id' => '1',
            'firstname' => 'Admin',
            'lastname' => 'ESO',
            'email' => 'admin.eso@gmail.com',
            'password' => hash::make('0000'),
+           'created_at'     => now(),
        ];
         $data[1]=[
-            'roles_id' => '2',
+            'role_id' => '2',
             'firstname' => 'Membre',
             'lastname' => 'ESO',
             'email' => 'membre.eso@gmail.com',
             'password' => hash::make('0000'),
+            'created_at'     => now(),
         ];
         $data[2]=[
-            'partners_id' => '2',
-            'roles_id' => '3',
+            'partner_id' => '2',
+            'role_id' => '3',
             'firstname' => 'Boutique',
             'lastname' => 'Aigle',
             'email' => 'boutique.aigle@gmail.com',
             'password' => hash::make('0000'),
+            'created_at'     => now(),
         ];
         $data[3]=[
-            'partners_id' => '4',
-            'roles_id' => '3',
+            'partner_id' => '4',
+            'role_id' => '3',
             'firstname' => 'Harrys',
             'lastname' => 'Boutique',
             'email' => 'Harrys.Boutique@gmail.com',
             'password' => hash::make('0000'),
+            'created_at'     => now(),
         ];
 
 

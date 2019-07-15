@@ -39,8 +39,8 @@ class Article extends Model
         return $this->belongsTo(Gender::class);
     }
 
-    public function  Partner()
+    public function  marque()
     {
-        return $this->belongsTo(Partner::class);
+        return $this->belongsTo(Marque::class);
     }
 }

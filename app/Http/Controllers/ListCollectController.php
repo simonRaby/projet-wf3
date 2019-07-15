@@ -21,7 +21,7 @@ class ListCollectController extends Controller
      */
     public function anyData()
     {
-        $collects = Collect::with('partner', 'partner.villeFrance', 'article')->where('status', 0)->get();
+        $collects = Collect::with('partner', 'partner.villeFrance', 'article')->where('status_id', 1)->get();
         foreach ($collects as $collect) {
             $qty = 0;
             foreach ($collect->article as $article) {

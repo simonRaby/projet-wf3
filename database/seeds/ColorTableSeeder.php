@@ -12,38 +12,49 @@ class ColorTableSeeder extends Seeder
      */
     public function run()
     {
-       $data[0]=[
-           'color' => 'Bleu'
-       ];
+        $data[0]=[
+            'label' => 'Bleu',
+            'created_at'     => now(),
+        ];
         $data[1]=[
-            'color' => 'Blanc'
+            'label' => 'Blanc',
+            'created_at'     => now(),
         ];
         $data[2]=[
-            'color' => 'Rouge'
+            'label' => 'Rouge',
+            'created_at'     => now(),
         ];
         $data[3]=[
-            'color' => 'Vert'
+            'label' => 'Vert',
+            'created_at'     => now(),
         ];
         $data[4]=[
-            'color' => 'Orange'
+            'label' => 'Orange',
+            'created_at'     => now(),
         ];
         $data[5]=[
-            'color' => 'Marron'
+            'label' => 'Marron',
+            'created_at'     => now(),
         ];
         $data[6]=[
-            'color' => 'Gris'
+            'label' => 'Gris',
+            'created_at'     => now(),
         ];
         $data[7]=[
-            'color' => 'Noir'
+            'label' => 'Noir',
+            'created_at'     => now(),
         ];
         $data[8]=[
-            'color' => 'Violet'
+            'label' => 'Violet',
+            'created_at'     => now(),
         ];
         $data[9]=[
-            'color' => 'Rose'
+            'label' => 'Rose',
+            'created_at'     => now(),
         ];
         $data[10]=[
-            'color' => 'Jaune'
+            'label' => 'Jaune',
+            'created_at'     => now(),
         ];
 
 
@@ -51,8 +62,8 @@ class ColorTableSeeder extends Seeder
 
 
 
-       for($i =0; $i <11; $i++){
-           Color::insert($data[$i]);
-       }
+        for($i =0; $i <11; $i++){
+            Color::insert($data[$i]);
+        }
     }
 }
