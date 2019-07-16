@@ -15,8 +15,9 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
+
         if ($request->user() && $request->user()->role_id != 1) {
-            return view('/');
+            return redirect()->route('login');
         }
         return $next($request);
     }

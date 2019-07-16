@@ -15,37 +15,46 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home.index');
-});
+})->name('home');
 
 Auth::routes();
 Auth::routes(['register' => false]);
+Auth::routes(['reset' => true]);
 
 Route::get('/about', 'AboutController@index');
 
 Route::get('/contact', 'ContactController@index');
 Route::post('/contact', 'ContactController@store');
 
-Route::group(['middleware' => ['App\Http\Middleware\AdminMiddleware']], function () {
-
-    Route::get('/list-collect', 'ListCollectController@index')->name('listCollect');
-    Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
-});
-
-Route::group(['middleware' => ['App\Http\Middleware\MemberMiddleware']], function () {
-
-    Route::get('/validate-collect', 'ValidateCollectController@index');
-    Route::post('/validate-collect', 'ValidateCollectController@store');
-    Route::get('/bonCollectPdf', 'ValidateCollectController@pdfCollect');
-});
-
-Route::group(['middleware' => ['App\Http\Middleware\PartnerMiddleware']], function () {
-
-    Route::get('/list-collect', 'ListCollectController@index')->name('listCollect');
-    Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
-});
-
-
 Route::get('/scan', 'ScanController@index');
 Route::get('/article', 'ArticleController@index');
+
+
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::group(['middleware' => ['admin']], function () {
+
+    });
+
+    Route::group(['middleware' => ['memberAdmin']], function () {
+
+        Route::get('/listCollect', 'ListCollectController@index')->name('listCollect');
+        Route::get('/listCollectData', 'ListCollectController@anyData')->name('listcollectdata');
+
+        Route::get('/validateCollect', 'ValidateCollectController@index');
+        Route::post('/validateCollect', 'ValidateCollectController@store');
+        Route::get('/bonCollectPdf', 'ValidateCollectController@pdfCollect');
+    });
+
+    Route::group(['middleware' => ['partner']], function () {
+        Route::get('/addArticle', 'AddArticleController@index');
+    });
+
+});
+
+
+
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');

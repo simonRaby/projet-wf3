@@ -48,7 +48,7 @@
                 columnDefs: [ {
                         "targets": -1,
                         "data": null,
-                        "defaultContent": '<button class="btn btn-primary">Valider</button>'
+                        "defaultContent": '<button class="btn btn-primary">Détails avant Validation</button>'
                     } ],
                 language: {
                         "sProcessing":     "Traitement en cours...",
@@ -83,7 +83,7 @@
             // fonction de redirection on click avec l'id de la collect passé en get
             $('#collects-table tbody').on( 'click', 'button', function () {
                 var data = table.row( $(this).parents('tr') ).data();
-                window.location.replace("/validate-collect?id="+data['id']);
+                window.location.replace("/validateCollect?id="+data['id']);
             } );
 
         });

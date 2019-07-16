@@ -30,7 +30,7 @@ class ValidateCollectController extends Controller
             }
         }
 
-        return view('validate-collect.index')->with(['articles' => $articles, 'id' => $id]);
+        return view('validateCollect.index')->with(['articles' => $articles, 'id' => $id]);
     }
 
     public function store(Request $request)

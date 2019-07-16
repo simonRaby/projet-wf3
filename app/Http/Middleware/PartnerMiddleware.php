@@ -16,7 +16,7 @@ class PartnerMiddleware
     public function handle($request, Closure $next)
     {
         if ($request->user() && $request->user()->role_id != 3) {
-            return view('/');
+            return redirect()->route('login');
         }
 
         return $next($request);

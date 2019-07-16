@@ -47,40 +47,48 @@
                     </ul>
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ml-auto">
-{{--
-                        @if (Auth::user->type  == 'admin')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/listpartner">Liste des partnenaire</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/listMember">Liste des membres</a>
-                            </li>
-                        @endif
-                        @if (Auth::user->type  == 'partner')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/account">Mon compte</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/newCollect">Créer une collecte</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/collectHistory">Historique des collectes</a>
-                            </li>
-                        @endif
-                        @if (Auth::user->type  == 'member')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/listCollect">Collectes en attente</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/listArticle">Liste des article</a>
-                            </li>
-                        @endif --}}
+
+
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                         @else
+                            @if (Auth::user()->role_id  == 1)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listPartner">Liste des partnenaire</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listMember">Liste des membres</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listCollect">Collectes en attente</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listArticle">Liste des article</a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->role_id  == 3)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/account">Mon compte</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/addArticle">Créer une collecte</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/collectHistory">Historique des collectes</a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->role_id  == 2)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listCollect">Collectes en attente</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listArticle">Liste des article</a>
+                                </li>
+                            @endif
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
