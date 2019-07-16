@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home.index');
 });
-Route::get('/scan', 'ScanController@index');
 
 Auth::routes();
 Auth::routes(['register' => false]);
@@ -26,14 +25,27 @@ Route::get('/about', 'AboutController@index');
 Route::get('/contact', 'ContactController@index');
 Route::post('/contact', 'ContactController@store');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['App\Http\Middleware\AdminMiddleware']], function () {
 
-Route::get('/list-collect', 'ListCollectController@index')->name('listCollect');
-Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
+    Route::get('/list-collect', 'ListCollectController@index')->name('listCollect');
+    Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
+});
 
-Route::get('/validate-collect', 'ValidateCollectController@index');
-Route::post('/validate-collect', 'ValidateCollectController@store');
-Route::get('/bonCollectPdf', 'ValidateCollectController@pdfCollect');
+Route::group(['middleware' => ['App\Http\Middleware\MemberMiddleware']], function () {
+
+    Route::get('/validate-collect', 'ValidateCollectController@index');
+    Route::post('/validate-collect', 'ValidateCollectController@store');
+    Route::get('/bonCollectPdf', 'ValidateCollectController@pdfCollect');
+});
+
+Route::group(['middleware' => ['App\Http\Middleware\PartnerMiddleware']], function () {
+
+    Route::get('/list-collect', 'ListCollectController@index')->name('listCollect');
+    Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
+});
+
 
 Route::get('/scan', 'ScanController@index');
 Route::get('/article', 'ArticleController@index');
+
+Route::get('/home', 'HomeController@index')->name('home');
