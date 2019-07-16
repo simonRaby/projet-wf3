@@ -143,7 +143,7 @@
                         data: 'partnerpc=' + partnerPostalCode.value,
                     })
                         .always(function (data) {
-                            console.log(data);
+
                             let cities = data.ville;
 
                             for (let i = 0; i < cities.length; i++) {

@@ -19,9 +19,13 @@ Route::get('listMember', 'ListMemberController@index');
 Route::get('listPartner', 'ListPartnerController@index');
 
 
-
 Route::get('adminAddMember', 'AdminAddMemberController@index');
 Route::post('adminAddMember', 'AdminAddMemberController@store');
+
+Route::get('updateAdminMember','AdminAddMemberController@edit');
+Route::post('updateAdminMember','AdminAddMemberController@update');
+
+Route::get('AjaxDeleteAdminMember','AdminAddMemberController@delete');
 
 Route::get('adminAddPartner','AdminAddPartnerController@index');
 Route::post('adminAddPartner','AdminAddPartnerController@store');
