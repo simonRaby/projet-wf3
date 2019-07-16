@@ -21,22 +21,34 @@ Route::get('/scan', 'ScanController@index');
 Auth::routes();
 Auth::routes(['register' => false]);
 Route::get('/about', 'AboutController@index');
+
 Route::get('/contact', 'ContactController@index');
 Route::post('/contact', 'ContactController@store');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
+Route::get('/list-collect', 'ListCollectController@index');
 Route::get('/validate-collect', 'ValidateCollectController@index');
 Route::post('/validate-collect', 'ValidateCollectController@store');
+
 Route::get('/scan', 'ScanController@index');
+
 Route::get('/article', 'ArticleController@index');
+
 Route::get('listMember', 'ListMemberController@index');
+Route::get('listMemberData', 'listPartnerController@listPartnerData')->name('listPartnerData');
 Route::get('listPartner', 'ListPartnerController@index');
-Route::get('/list-collect', 'ListCollectController@index');
+
 Route::get('adminAddMember', 'AdminAddMemberController@index');
 Route::post('adminAddMember', 'AdminAddMemberController@store');
+
 Route::get('updateAdminMember','AdminAddMemberController@edit');
 Route::post('updateAdminMember','AdminAddMemberController@update');
-Route::get('AjaxDeleteAdminMember','AdminAddMemberController@delete');
+
+
 Route::get('adminAddPartner','AdminAddPartnerController@index');
 Route::post('adminAddPartner','AdminAddPartnerController@store');
-Route::post('AjaxAdminAddPartner', 'AdminAddPartnerController@AjaxPostalCode');
+
+Route::post('AjaxAdminAddPartner', 'AdminAddPartnerController@ajaxPostalCode');
+Route::get('AjaxDeleteAdminMember','AdminAddMemberController@ajaxDeleteAdminMember');

@@ -1,14 +1,15 @@
 {{--formulaire d'ajout de partenaire--}}
-@extends('layout.master')
+@extends('layouts.master')
 @section('content')
-    @if (Session::get('successMessage'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ Session::get('succesMessage')}}Partenaire ajouté avec succès.</strong>
-        </div>
-    @endif
+
     <div class="container text-center">
         <div class="col-5 offset-3">
+            @if (isset($successMessage))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{$successMessage}}</strong>
+                </div>
+            @endif
             <h2>Ajouter un partenaire</h2>
             <form action="adminAddPartner" method="post" name="addPartner">{{csrf_field()}}
                 <div class="form-group">
@@ -23,7 +24,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="partnerDirector"> Prénom Directrice(teur)</label><br>
+                    <label for="partnerDirector"> Prénom du Responsable</label><br>
                     <input value="{{old('partnerDirector')}}" class="form-control" type="text" name="partnerDirector"
                            required>
                     @if($errors->has('partnerDirector'))
@@ -34,8 +35,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="partnerDirectorLstNme">Nom Directrice(teur)</label><br>
-                    <input value="{{old('partnerDirectorLstNme')}}" class="form-control" type="text" name="partnerDirectorLstNme"
+                    <label for="partnerDirectorLstNme">Nom du Responsable</label><br>
+                    <input value="{{old('partnerDirectorLstNme')}}" class="form-control" type="text"
+                           name="partnerDirectorLstNme"
                            required>
                     @if($errors->has('partnerDirectorLstNme'))
                         <div class="alert alert-danger" role="alert">
@@ -74,13 +76,12 @@
                     <select name="selectCity" class="custom-select" id="selectCity" required>
                         <option selected>Veuillez sélectionner une ville</option>
                     </select>
-                    @if($errors->has('selectCity'))
-                        <div class="alert alert-danger" role="alert">
-                            <strong>{{$errors->first('selectCity')}}</strong>
-                        </div>
-                    @endif
                 </div>
-
+                @if($errors->has('selectCity'))
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{$errors->first('selectCity')}}</strong>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="partnerPhone">Téléphone</label><br>
                     <input value="{{old('partnerPhone')}}" class="form-control" type="text" name="partnerPhone"

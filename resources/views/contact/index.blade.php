@@ -101,7 +101,6 @@
 @section('script')
 <script>
     $(function() {
-    alert('1');
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     });
 </script>
