@@ -39,3 +39,15 @@ Route::post('/article', 'ArticleController@vendu' );
 
 Route::get('/scan', 'ScanController@index');
 Route::get('/article', 'ArticleController@index');
+
+
+Route::get('/list-article', 'ListarticleController@index');
+Route::get('/list-article-data', 'ListarticleController@anyData')->name('listarticledata');
+
+
+Route::get('/add-article', 'AddArticleController@index');
+Route::post('/add-article', 'AddArticleController@add');
+Route::get('/categoryAjax', 'AddArticleController@category');
+
+
+Route::get('/collect', 'collectController@index')->name('collect');

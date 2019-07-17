@@ -35,11 +35,11 @@
                 ajax: '{!! route('listcollectdata') !!}',
                 columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'partner.name', name: 'partner' },
-                    { data: 'partner.address', name: 'address' },
-                    { data: 'partner.ville_france.ville_nom_reel', name: 'city' },
+                    { data: 'partner.name', name: 'partner.name' },
+                    { data: 'partner.address', name: 'partner.address' },
+                    { data: 'partner.ville_france.ville_nom_reel', name: 'partner.ville_france.ville_nom_reel' },
                     { data: 'quantity', name: 'quantity' },
-                    { data: 'created_at', name: 'created_at' },
+                        { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action' }
                 ],
                 columnDefs: [ {
