@@ -32,9 +32,7 @@ Route::get('/article', 'ArticleController@index');
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::group(['middleware' => ['admin']], function () {
-
-    });
+    Route::group(['middleware' => ['admin']], function () { });
 
     Route::group(['middleware' => ['memberAdmin']], function () {
 
@@ -48,8 +46,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['partner']], function () {
         Route::get('/addArticle', 'AddArticleController@index');
-    });
 
+        Route::get('/recapCollect', 'RecapCollectController@index');
+        Route::post('/recapCollect', 'RecapCollectController@store');
+
+        Route::get('/collectHistory', 'CollectHistoryController@index');
+        Route::get('/collectHistoryData', 'CollectHistoryController@anyData')->name('collectHistoryData');
+    });
 });
 
 

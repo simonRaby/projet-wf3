@@ -9,7 +9,13 @@ class RecapCollectController extends Controller
 {
     public function index(Request $request)
     {
-        return view('recapCollect.index');
+        if ($request->session()->has('collect')) {
+            $collect = $request->session()->get('collect');
+        } else {
+            $collect = false;
+        }
+
+        return view('recapCollect.index')->with('collect', $collect);
     }
 
     public function store(Request $request)
@@ -29,12 +35,12 @@ class RecapCollectController extends Controller
                 $newArticle->marque_id = $article['marque_id'];
                 $newArticle->gender_id = $article['gender_id'];
                 $newArticleId = $newArticle->save();
-                foreach ($article['declination'] as $declination) {
+                foreach ($article['declinations'] as $declination) {
                     $newDeclination = new AssociationArticle;
                     $newDeclination->article_id = $newArticleId['id'];
                     $newDeclination->size_id = $declination['size_id'];
                     $newDeclination->color_id = $declination['color_id'];
-                    $newDeclination->quantity_id = $declination['quantity_id'];
+                    $newDeclination->quantity_id = $declination['quantity'];
                     $newDeclination->save();
                 }
             }

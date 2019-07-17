@@ -10663,3 +10663,19 @@ a.text-dark:focus {
   color: gray;
 }
 
+/**************** RecapCollect *********/
+
+#tableCollect {
+  text-align: center;
+}
+
+.tableDropdown {
+  display: none;
+  width: 300px;
+}
+
+.table td.tdDropdown {
+  width: 300px;
+  padding: 12px 0;
+}
+
