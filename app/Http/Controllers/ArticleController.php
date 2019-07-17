@@ -12,18 +12,19 @@ class ArticleController extends Controller
     {
         $id = $request->id;
         $article = Article::find($id);
-
+//        dd($article);
         $articles['id_product'] = $article->id;
         $articles['name'] = $article->name;
         $articles['category'] = $article->category->name;
         $articles['gender'] = $article->gender->label;
         $articles['rank'] =$article->rank->label;
+        $articles['img'] = $article->img;
         foreach ($article->associationArticle as $assoc) {
             $articles['declinations'][$assoc->color->label][$assoc->size->label] = $assoc->stock;
             $articles['id'][$assoc->color->label][$assoc->size->label] = $assoc->id;
         }
 
-        //        dd($articles);
+//                dd($articles);
         return view('article.index')->with('articles', $articles);
     }
 
@@ -50,6 +51,7 @@ class ArticleController extends Controller
         $articles['category'] = $article->category->name;
         $articles['gender'] = $article->gender->label;
         $articles['rank'] =$article->rank->label;
+        $articles['img'] =$articles->img;
         foreach ($article->associationArticle as $assoc) {
             $articles['declinations'][$assoc->color->label][$assoc->size->label] = $assoc->stock;
             $articles['id'][$assoc->color->label][$assoc->size->label] = $assoc->id;

@@ -16,7 +16,13 @@
         <div class="container">
             <div class="card-group">
                 <div class="card">
-                    <img src="{{ asset('storage/images/logo.png') }}" class="card-img-top est-img mx-auto" alt="...">
+                    @if($articles['img'] != null)
+
+                        
+                        <img src="{{ asset('storage/images/'.$articles['img']) }}" class="card-img-top est-img mx-auto" alt="...">
+                    @else
+                        <img src="{{ asset('storage/images/logo.png') }}" class="card-img-top est-img mx-auto" alt="...">
+                   @endif
                     <div class="card-body">
                         <h5 class="card-title"><strong>{{ $articles['name'] }}</strong></h5>
                         <p class="card-text">{{ $articles['gender'] }}</p>
