@@ -7,6 +7,8 @@ use App\Model\Color;
 use App\Model\Gender;
 use App\Model\Marque;
 use App\Model\Size;
+use Validator;
+use Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -38,7 +40,27 @@ class AddArticleController extends Controller
     }
     public function add(Request $request){
 
-      //  dd($request);
+        $values = $request->all();
+        $rules = [
+            'category_id'       => 'required|numeric',
+            'marque_id'         => 'numeric',
+            'gender_id'         => 'required|numeric',
+            'name'              => 'string|required',
+            'size_id[]'           => '|numeric',
+            'color_id[]'          => '|numeric',
+            'quantity[]'          => '|numeric&',
+        ];
+        $validator = validator::make ($values, $rules);
+
+        if($validator->fails()){
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+
+      ///////////////////////////////////////////////////
         $name= $request->name;
         $category_id = $request->category_id;
         if($request->marqueNull != null){
@@ -48,15 +70,6 @@ class AddArticleController extends Controller
         }
         $gender_id = $request->gender_id;
 
-        foreach($request->color_id as $color){
-            $color_id[]=$color;
-        }
-        foreach($request->size_id as $size){
-            $size_id[]=$size;
-        }
-        foreach($request->quantity as $quantite){
-            $quantity[]=$quantite;
-        }
 
         $article['name']= $name;
         $article['category_id']= $category_id;
@@ -75,26 +88,19 @@ class AddArticleController extends Controller
 
 
         Session::push('collect', $article);
-        Session::push('collect', $article);
 
-
-
-
-
-        $sess=Session::get('collect');
-        dd($sess);
 
 
         $btn = $request->btn;
 
-        if($btn = 0){
+        if($btn == 0){
 
-            return redirect()->route('collect', ['id' => $id])->with('collect', $collect);
+            return redirect()->route('recapCollect');
         }else{
-            $categories = Category::all();
-            $marques = Marque::all();
-            $genders = Gender::all();
-            $colors = Color::all();
+            $categories     = Category::all();
+            $marques        = Marque::all();
+            $genders        = Gender::all();
+            $colors         = Color::all();
 
             return view('add-article.index')
                 ->with('categories', $categories)

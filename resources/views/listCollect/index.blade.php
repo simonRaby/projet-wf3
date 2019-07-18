@@ -1,60 +1,55 @@
 @extends('layouts.master')
 
-
 @section('content')
-    <div class="container est-test">
-        <div class="container">
-            <h1>Historique des collects</h1>
-
-            <table class="table table-bordered table-striped" id="history-table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Date de création</th>
-                    <th>Date de collectes</th>
-                    <th>Quantité collecté</th>
-                    <th>Statut</th>
-                    <th>Erreur quantité</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-            </table>
+<div class="container">
+    <h1>Liste des collectes en attente</h1>
+     {{-- Message en session flash si le mail c'esy bien envoyé --}}
+     @if(session()->has('successMessage'))
+        <div class="alert alert-success">
+            {{ session('successMessage') }}
+            <p>Télécharger le bon de collecte au format pdf</p>
+            <a href="/bonCollectPdf?action=download&collectId={{ session('collectId') }}" class="btn btn-primary">Télécharger</a>
         </div>
 
-    </div>
-
-
+    @endif
+    <table class="table table-bordered table-striped" id="collects-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Partenaire</th>
+                    <th>Adresse</th>
+                    <th>ville</th>
+                    <th>Quantité</th>
+                    <th>Créé le</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+</div>
 @endsection
-
 
 @section('script')
     <script>
         // Fonction de creation de tableau en utilisa  nt le package datatable de yajra
         $(function() {
-            let table =  $('#history-table').DataTable({
+            let table =  $('#collects-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('collectHistoryData') !!}',
+                ajax: '{!! route('listcollectdata') !!}',
                 columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'created_at', name: 'created_at' },
-                    { data: 'collected_at', name: 'quantity_collected' },
-                    { data: 'quantity_collected', name: 'quantity_collected' },
-                    { data: 'status.label', name: 'status.label' },
-                    { data: 'is_error', name: 'is_error' },
+                    { data: 'partner.name', name: 'partner.name' },
+                    { data: 'partner.address', name: 'partner.address' },
+                    { data: 'partner.ville_france.ville_nom_reel', name: 'partner.ville_france.ville_nom_reel' },
+                    { data: 'quantity', name: 'quantity' },
+                        { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action' }
                 ],
                 columnDefs: [ {
                         "targets": -1,
                         "data": null,
-                        "defaultContent": '<button class="btn btn-primary">Télécharger  en pdf</button>'
-                    },
-                    { targets : [5],
-                    render : function (data, type, row) {
-                        return data == '1' ? 'erreur' : 'Aucune'
-                        }
-                    }
-                ],
+                        "defaultContent": '<button class="btn btn-primary">Détails avant Validation</button>'
+                    } ],
                 language: {
                         "sProcessing":     "Traitement en cours...",
                         "sSearch":         "Rechercher&nbsp;:",
@@ -86,10 +81,9 @@
                     }
             });
             // fonction de redirection on click avec l'id de la collect passé en get
-            $('#history-table tbody').on( 'click', 'button', function () {
-
+            $('#collects-table tbody').on( 'click', 'button', function () {
                 var data = table.row( $(this).parents('tr') ).data();
-                window.location.href= "/bonCollectPdfHistory?action=download&collectId="+data['id'];
+                window.location.replace("/validateCollect?id="+data['id']);
             } );
 
         });

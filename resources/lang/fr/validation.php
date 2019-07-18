@@ -171,6 +171,6 @@ return [
         'available'             => 'disponible',
         'size'                  => 'taille',
     ],
-];
+
 
 ];

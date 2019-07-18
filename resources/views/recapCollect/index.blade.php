@@ -2,20 +2,21 @@
 
 
 @section('content')
-    <div class="container">
-        <h1>Récapitulatif de la collecte avant validation</h1>
-        <table class="table" id="tableCollect">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">catégorie</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Marque</th>
-                <th scope="col">Détails</th>
-              </tr>
-            </thead>
-            <tbody>
+    <div class="container-fluid est-test">
+        <div class="container">
+            <h1>Récapitulatif de la collecte avant validation</h1>
+            <table class="table" id="tableCollect">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">catégorie</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Marque</th>
+                    <th scope="col">Détails</th>
+                </tr>
+                </thead>
+                <tbody>
                 {{-- @if (isset($collect) && $collect)
                 {{ $i = 0 }}
                     @foreach ( $collect['articles'] as $article)
@@ -56,78 +57,80 @@
                 </table>
                 @endif --}}
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td class="tdDropdown"><a class="btnDropdown" >
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td class="tdDropdown"><a class="btnDropdown" >
                             Plus de détails &darr;
                         </a>
-                    <table class="table tableDropdown table-sm ">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Taille</th>
-                            <th scope="col">Couleur</th>
-                            <th scope="col">Quantité</th>
-                          </tr>
-                        </thead>
-                        <tbody>
+                        <table class="table tableDropdown table-sm ">
+                            <thead>
                             <tr>
-                              <th scope="row">1</th>
-                              <td>m</td>
-                              <td>rouge</td>
-                              <td>25</td>
+                                <th scope="col">#</th>
+                                <th scope="col">Taille</th>
+                                <th scope="col">Couleur</th>
+                                <th scope="col">Quantité</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>m</td>
+                                <td>rouge</td>
+                                <td>25</td>
                             </tr>
                             <tr>
-                                    <th scope="row">2</th>
-                                    <td>m</td>
-                                    <td>rouge</td>
-                                    <td>25</td>
-                                  </tr>
-                        </tbody>
-                    </table>
-                </td>
+                                <th scope="row">2</th>
+                                <td>m</td>
+                                <td>rouge</td>
+                                <td>25</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
                 </tr>
                 <tr>
-                        <th scope="row">2</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td class="tdDropdown"><a class="btnDropdown" >
-                                  Plus de détails &darr;
-                              </a>
-                          <table class="table tableDropdown table-sm ">
-                              <thead>
-                                <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Taille</th>
-                                  <th scope="col">Couleur</th>
-                                  <th scope="col">Quantité</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>m</td>
-                                    <td>rouge</td>
-                                    <td>25</td>
-                                  </tr>
-                                  <tr>
-                                          <th scope="row">2</th>
-                                          <td>m</td>
-                                          <td>rouge</td>
-                                          <td>25</td>
-                                        </tr>
-                              </tbody>
-                          </table>
-                      </td>
-                      </tr>
-            </tbody>
-        </table>
+                    <th scope="row">2</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td class="tdDropdown"><a class="btnDropdown" >
+                            Plus de détails &darr;
+                        </a>
+                        <table class="table tableDropdown table-sm ">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Taille</th>
+                                <th scope="col">Couleur</th>
+                                <th scope="col">Quantité</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>m</td>
+                                <td>rouge</td>
+                                <td>25</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>m</td>
+                                <td>rouge</td>
+                                <td>25</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
 @endsection
 
 @section('script')

@@ -18,38 +18,52 @@
                             <div class="form-row">
                                 <div class="col-6">
                                     <label for="name">Nom de L'article</label>
-                                    <input type="text" class="form-control" id="name" placeholder="TeeShirt Nike" name="name">
+                                    <input type="text" class="form-control" id="name" placeholder="TeeShirt Nike" name="name" value="{{old('name')}}">
+                                    @if($errors->has('name'))
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    @endif
                                 </div>
                                 <div class="col-6">
                                     <label for="category">Categorie</label>
-                                    <select class="custom-select my-1 mr-sm-2" id="category" name="category_id">
+                                    <select class="custom-select my-1 mr-sm-2" id="category" name="category_id" value="{{old('category_id')}}">
                                         <option selected>---</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                                         @endforeach
                                     </select>
+                                    @if($errors->has('category_id'))
+                                        <strong>{{ $errors->first('category_id') }}</strong>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-row mt-3">
                                 <div class="col-6">
                                     <label for="marque">Marque</label>
-                                    <select class="custom-select my-1 mr-sm-2" id="marque"  name="marque_id">
+                                    <select class="custom-select my-1 mr-sm-2" id="marque"  name="marque_id" value="{{old('marque_id')}}">
                                         <option selected>---</option>
                                         @foreach($marques as $marque)
                                             <option value="{{ $marque['id'] }}">{{ $marque['label'] }}</option>
                                         @endforeach
                                     </select>
-                                    <input type="text" class="form-control" id="marque" placeholder="Si votre marque n'est pas dedans" name="marqueNull">
-
+                                    @if($errors->has('marque_id'))
+                                        <strong>{{ $errors->first('marque_id') }}</strong>
+                                    @endif
+                                    <input type="text" class="form-control" id="marque" placeholder="Si votre marque n'est pas dedans" name="marqueNull" value="{{old('marqueNull')}}">
+                                    @if($errors->has('marqueNull'))
+                                        <strong>{{ $errors->first('marqueNull') }}</strong>
+                                    @endif
                                 </div>
                                 <div class="col-6">
                                     <label for="gender">Genre</label>
-                                    <select class="custom-select my-1 mr-sm-2" id="gender"  name="gender_id">
+                                    <select class="custom-select my-1 mr-sm-2" id="gender"  name="gender_id" value="{{old('gender_id[]')}}">
                                         <option selected>---</option>
                                         @foreach($genders as $gender)
                                             <option value="{{ $gender['id'] }}">{{ $gender['label'] }}</option>
                                         @endforeach
                                     </select>
+                                    @if($errors->has('gender_id[]'))
+                                        <strong>{{ $errors->first('gender_id[]') }}</strong>
+                                    @endif
                                 </div>
 
                             </div>
@@ -72,26 +86,36 @@
                                 <div class="form-row mt-3">
                                     <div class="col-6">
                                         <label for="color">Couleur</label>
-                                        <select class="custom-select my-1 mr-sm-2 est-color" id="color[]"  name="color_id[]">
+                                        <select class="custom-select my-1 mr-sm-2 est-color" id="color[]"  name="color_id[]" value="{{old('color_id[]')}}">
                                             <option selected>---</option>
                                             @foreach($colors as $color)
                                                 <option value="{{ $color['id'] }}">{{ $color['label'] }}</option>
                                             @endforeach
                                         </select>
+                                        @if($errors->has('color_id[]'))
+                                            <strong>{{ $errors->first('color_id[]') }}</strong>
+                                        @endif
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="size">Taille</label>
+                                        <select class="custom-select my-1 mr-sm-2 size" id="size[]"  name="size_id[]" value="{{old('size_id[]')}}">
+                                            <option selected>---</option>
+                                        </select>
+                                        @if($errors->has('size_id[]'))
+                                            <strong>{{ $errors->first('size_id[]') }}</strong>
+                                        @endif
                                     </div>
 
                                 </div>
                                 <div class="form-row mt-3">
-                                    <div class="col-6">
-                                        <label for="size">Taille</label>
-                                        <select class="custom-select my-1 mr-sm-2 size" id="size[]"  name="size_id[]">
-                                            <option selected>---</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-6">
+
+                                    <div class="col-12">
                                         <label for="quantity">Quantité</label>
-                                        <input type="text" class="form-control" id="quantity[]" placeholder="10" name="quantity[]">
+                                        <input type="text" class="form-control" id="quantity[]" placeholder="10" name="quantity[]" value="{{old('quantity[]')}}">
                                     </div>
+                                    @if($errors->has('quantity[]'))
+                                        <strong>{{ $errors->first('quantity[]') }}</strong>
+                                    @endif
 
                                 </div>
                                 <div class="row">
@@ -107,10 +131,10 @@
                 </div>
                 <div class="row text-center mt-5 mb-5">
                     <div class="col-6">
-                        <button type="submit" class="btn btn-primary" name="btn" value="0">Enregistre</button>
+                        <button type="submit" class="btn btn-primary" name="btn" value="0">Enregistrer</button>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn btn-primary" name="btn" value="1">Enregistre & Ajouter un nouveaux produit</button>
+                        <button type="submit" class="btn btn-primary" name="btn" value="1">Enregistrer & Ajouter un nouveaux produit</button>
                     </div>
                 </div>
          </form>
