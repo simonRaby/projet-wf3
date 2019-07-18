@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('css')
@@ -47,40 +48,48 @@
                     </ul>
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ml-auto">
-{{--
-                        @if (Auth::user->type  == 'admin')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/listpartner">Liste des partnenaire</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/listMember">Liste des membres</a>
-                            </li>
-                        @endif
-                        @if (Auth::user->type  == 'partner')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/account">Mon compte</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/newCollect">Créer une collecte</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/collectHistory">Historique des collectes</a>
-                            </li>
-                        @endif
-                        @if (Auth::user->type  == 'member')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/listCollect">Collectes en attente</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/listArticle">Liste des article</a>
-                            </li>
-                        @endif --}}
+
+
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                         @else
+                            @if (Auth::user()->role_id  == 1)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listPartner">Liste des partnenaire</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listMember">Liste des membres</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listCollect">Collectes en attente</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listArticle">Liste des article</a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->role_id  == 3)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/account">Mon compte</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/addArticle">Créer une collecte</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/collectHistory">Historique des collectes</a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->role_id  == 2)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listCollect">Collectes en attente</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listArticle">Liste des article</a>
+                                </li>
+                            @endif
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
