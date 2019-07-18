@@ -10656,35 +10656,8 @@ a.text-dark:focus {
   border-radius: 10px;
   border: 2px solid gray;
   box-shadow: 1px 1px 10px 0px #656565;
-}
-.est-video {
-  border-radius: 10px;
-  border: 2px solid gray;
-  box-shadow: 1px 1px 10px 0px #656565;
   width: 100%;
 }
-
-.est-h1 {
-  font-size: 1.5rem;
-  color: gray;
-}
-
-/**************** RecapCollect *********/
-
-#tableCollect {
-  text-align: center;
-}
-
-.tableDropdown {
-  display: none;
-  width: 300px;
-}
-
-.table td.tdDropdown {
-  width: 300px;
-  padding: 12px 0;
-}
-
 
 .est-h1 {
   font-size: 1.5rem;
@@ -10707,5 +10680,21 @@ a.text-dark:focus {
 .est-logo {
   color: lightslategray;
   font-size: 3rem;
+}
+
+/**************** RecapCollect *********/
+
+#tableCollect {
+  text-align: center;
+}
+
+.tableDropdown {
+  display: none;
+  width: 300px;
+}
+
+.table td.tdDropdown {
+  width: 300px;
+  padding: 12px 0;
 }
 
