@@ -1,7 +1,6 @@
 @extends('layouts.master')
-
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid est-test">
         <div class="container">
             <h1>Liste des Articles</h1>
             {{-- Message en session flash si le mail c'esy bien envoyé --}}
@@ -10,7 +9,7 @@
                     {{ session('successMessage') }}
                 </div>
             @endif
-            <table class="table table-bordered table-striped" id="articles-table">
+            <table class="table table-bordered table-striped table-responsive" id="articles-table">
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -96,3 +95,12 @@
         });
     </script>
 @endsection
+@section('javascript')
+    <script>
+
+
+
+
+    </script>
+@endsection
+

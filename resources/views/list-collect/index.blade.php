@@ -1,16 +1,17 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <h1>Liste des collectes en attente</h1>
-     {{-- Message en session flash si le mail c'esy bien envoyé --}}
-     @if(session()->has('successMessage'))
-        <div class="alert alert-success">
-            {{ session('successMessage') }}
-        </div>
-    @endif
-    <table class="table table-bordered table-striped" id="collects-table">
-            <thead>
+    <div class="container-fluid est-test">
+        <div class="container">
+            <h1>Liste des collectes en attente</h1>
+            {{-- Message en session flash si le mail c'esy bien envoyé --}}
+            @if(session()->has('successMessage'))
+                <div class="alert alert-success">
+                    {{ session('successMessage') }}
+                </div>
+            @endif
+            <table class="table table-bordered table-striped" id="collects-table">
+                <thead>
                 <tr>
                     <th>Id</th>
                     <th>Partenaire</th>
@@ -20,9 +21,11 @@
                     <th>Créé le</th>
                     <th>Action</th>
                 </tr>
-            </thead>
-        </table>
-</div>
+                </thead>
+            </table>
+        </div>
+    </div>
+
 @endsection
 
 @section('script')

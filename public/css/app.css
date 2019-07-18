@@ -10682,3 +10682,9 @@ a.text-dark:focus {
   font-size: 3rem;
 }
 
+@media (max-width: 700px) {
+  .est-test {
+    overflow-x: auto;
+  }
+}
+
