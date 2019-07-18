@@ -10652,3 +10652,33 @@ a.text-dark:focus {
   align-self: flex-end;
 }
 
+.est-video {
+  border-radius: 10px;
+  border: 2px solid gray;
+  box-shadow: 1px 1px 10px 0px #656565;
+  width: 100%;
+}
+
+.est-h1 {
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.est-img {
+  width: 80%;
+  height: 50%;
+}
+
+.est-input {
+  border-radius: 10px;
+  border: 1px solid gray;
+  height: 37px;
+  width: 90px;
+  padding-bottom: 4px;
+}
+
+.est-logo {
+  color: lightslategray;
+  font-size: 3rem;
+}
+

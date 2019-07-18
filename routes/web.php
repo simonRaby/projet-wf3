@@ -27,8 +27,25 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
 Route::get('/validate-collect', 'ValidateCollectController@index');
 Route::post('/validate-collect', 'ValidateCollectController@store');
+
+Route::get('/article', 'ArticleController@index' )->name('article');
+Route::post('/article', 'ArticleController@vendu' );
+
 Route::get('/scan', 'ScanController@index');
 Route::get('/article', 'ArticleController@index');
+
+
+Route::get('/list-article', 'ListarticleController@index');
+Route::get('/list-article-data', 'ListarticleController@anyData')->name('listarticledata');
+
+
+Route::get('/add-article', 'AddArticleController@index');
+Route::post('/add-article', 'AddArticleController@add');
+Route::get('/categoryAjax', 'AddArticleController@category');
+
+
+Route::get('/collect', 'collectController@index')->name('collect');
+
 Route::get('listMember', 'ListMemberController@index');
 Route::get('listPartner', 'ListPartnerController@index');
 Route::get('/list-collect', 'ListCollectController@index');
