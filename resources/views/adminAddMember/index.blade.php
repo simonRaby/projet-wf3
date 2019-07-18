@@ -13,11 +13,12 @@
                 </div>
             @endif
             @if(isset($edit))
-                <h2>Modifier les informations</h2>
+                <h2>Modifier les informations d'un membre</h2>
             @else
                 <h2>Ajouter un membre</h2>
             @endif
-            <form method="POST" name="addMember">{{csrf_field()}}
+            <form method="POST" action="{{isset($edit)?"updateAdminMember":"adminAddMember"}}"
+                  name="{{isset($edit)?"updateMember":"addMember"}}">{{csrf_field()}}
 
                 <div class="form-group">
                     <label for="lastName">Nom</label><br>
@@ -63,7 +64,8 @@
                                 ?</label>
                         </div>
                         <div class="form-group" id="passwordUpdate" style="display:none;">
-                            <input type="password" id="passwordMember" class="form-control" name="passwordMember" placeholder="Nouveau mot de passe, 6 caractères requis" required disabled>
+                            <input type="password" id="passwordMember" class="form-control" name="passwordMember"
+                                   placeholder="Nouveau mot de passe, 6 caractères requis" required disabled>
                             <small>
                                 <strong>Veuillez inclure un caractère spécial, une majuscule ainsi qu'une
                                     minuscule.</strong>
@@ -85,7 +87,8 @@
                     @endif
                 </div>
                 @if(isset($edit))
-                    <button href="updateAdminMember?id={{$edit->id}}" type="submit" style="background-color:#FF8D65"
+                    <input type="hidden" name="id" value="{{$edit->id}}">
+                    <button type="submit" style="background-color:#FF8D65"
                             name="editMember" class="btn btn-primary">
                         Editer
                     </button>
@@ -114,14 +117,6 @@
                     passwordUpdate.disabled = true;
                 }
                 ;
-
-                /*let input = document.createElement('input');
-                input.classList.add('form-control');
-                input.setAttribute('type','password');
-                input.setAttribute('name','passwordMember');
-                console.log('toto');
-                input.placeholder = '6 caractères requis';
-                passArea.add(input);*/
 
             })
         })

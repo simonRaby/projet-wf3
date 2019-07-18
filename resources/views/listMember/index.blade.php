@@ -29,9 +29,12 @@
                             <td>{{$member->lastname}}</td>
                             <td>{{$member->email}}</td>
                             <td><a href="updateAdminMember?id={{$member->id}}" style="color:#3D50CC"
-                                   class="fas fa-edit"></a></td>
-                            <td><a href="#" style="color:#3D50CC" data-memberId="{{$member->id}}"
-                                   class="deleteMember fas fa-trash-alt"></a></td>
+                                   class="btn btn-outline-success fas fa-edit"></a></td>
+                            <td>
+                                <button type="button" style="color:#3D50CC"
+                                        data-memberId="{{$member->id}}"
+                                        class=" deleteMember btn btn-outline-success fas fa-trash-alt"></button>
+                            </td>
                         </tr>
                     @endforeach
                 @endif
@@ -56,11 +59,11 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: 'AjaxDeleteAdminMember?id='+ deleteMember,
+                    url: 'AjaxDeleteAdminMember?id=' + deleteMember,
                 })
-                    .always(function(data){
+                    .always(function (data) {
 
-                        let test = $('.deleteMember[data-memberId='+ data.id+']').closest('tr').remove()
+                        let test = $('.deleteMember[data-memberId=' + data.id + ']').closest('tr').remove()
                         console.log(test);
                     })
             })

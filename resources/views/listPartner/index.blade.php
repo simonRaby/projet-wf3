@@ -2,9 +2,16 @@
 @section('content')
     <div class="container">
         <h1>Liste des partenaires</h1>
+        @if (isset($successMessage))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{$successMessage}}</strong>
+            </div>
+        @endif
         <table class="table table-bordered table-striped" id="partnerData">
-            <thead>
+            <thead class="bg-success">
             <tr>
+                <th>Id</th>
                 <th>Partenaire</th>
                 <th>Responsable</th>
                 <th>Email</th>
@@ -16,6 +23,7 @@
             </tr>
             </thead>
         </table>
+        <a href="adminAddPartner" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Ajouter un partenaire</a>
     </div>
 @endsection
 @section('script')
@@ -26,6 +34,7 @@
                 serverSide: true,
                 ajax: '{!! route('listPartnerData') !!}',
                 columns: [
+                    {data: 'id', name: 'id'},
                     {data: 'partner.name', name: 'partner.name'},
                     {data: 'lastname', name: 'lastname'},
                     {data: 'email', name: 'email'},
@@ -39,11 +48,11 @@
                 columnDefs: [{
                     "targets": -1,
                     "data": null,
-                    "defaultContent": '<button type="button" style="color:#3D50CC" class="fas fa-trash-alt"></button>'
+                    "defaultContent": '<button type="button" id="deletePartner" style="color:#3D50CC" class="btn btn-outline-success fas fa-trash-alt "></button>'
                 }, {
                     "targets": -2,
                     "data": null,
-                    "defaultContent": '<button type="button" style="color:#3D50CC" class="fas fa-edit"></button>'
+                    "defaultContent": '<button type="button" id="updatePartner" style="color:#3D50CC" class="btn btn-outline-success fas fa-edit"></button>'
                 }],
 
                 language: {
@@ -77,10 +86,16 @@
                 }
             });
 
-            $('#partnerData tbody').on('click', 'button', function () {
-                var data = table.row($(this).parents('tr')).data();
+            $('#partnerData tbody').on('click', '#updatePartner', function () {
+                let data = table.row($(this).parents('tr')).data();
                 console.log(data['id']);
-                window.location.replace("/validate-collect&id=" + data['id']);
+                window.location.replace("editAdminPartner?id=" + data['id']);
+            });
+
+            $('#partnerData tbody').on('click', '#deletePartner', function () {
+                let dataDelete = table.row($(this).parents('tr')).data();
+                console.log(dataDelete['id']);
+                window.location.replace("deleteAdminPartner?id=" + dataDelete['id']);
             });
 
         });

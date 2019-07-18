@@ -37,7 +37,7 @@ Route::get('/scan', 'ScanController@index');
 Route::get('/article', 'ArticleController@index');
 
 Route::get('listMember', 'ListMemberController@index');
-Route::get('listMemberData', 'listPartnerController@listPartnerData')->name('listPartnerData');
+Route::get('listPartnerData', 'listPartnerController@listPartnerData')->name('listPartnerData');
 Route::get('listPartner', 'ListPartnerController@index');
 
 Route::get('adminAddMember', 'AdminAddMemberController@index');
@@ -45,6 +45,10 @@ Route::post('adminAddMember', 'AdminAddMemberController@store');
 
 Route::get('updateAdminMember','AdminAddMemberController@edit');
 Route::post('updateAdminMember','AdminAddMemberController@update');
+
+Route::get('editAdminPartner','AdminAddPartnerController@edit');
+Route::post('updateAdminPartner', 'AdminAddPartnerController@update');
+Route::get('deleteAdminPartner', 'AdminAddPartnerController@delete');
 
 
 Route::get('adminAddPartner','AdminAddPartnerController@index');
