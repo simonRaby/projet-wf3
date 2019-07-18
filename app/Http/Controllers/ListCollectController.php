@@ -12,7 +12,7 @@ class ListCollectController extends Controller
     public function index()
     {
 
-        return view('list-collect.index');
+        return view('listCollect.index');
     }
     /**
      * Process datatables ajax request.

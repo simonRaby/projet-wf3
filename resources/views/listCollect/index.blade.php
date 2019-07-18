@@ -7,7 +7,10 @@
      @if(session()->has('successMessage'))
         <div class="alert alert-success">
             {{ session('successMessage') }}
+            <p>Télécharger le bon de collecte au format pdf</p>
+            <a href="/bonCollectPdf?action=download&collectId={{ session('collectId') }}" class="btn btn-primary">Télécharger</a>
         </div>
+
     @endif
     <table class="table table-bordered table-striped" id="collects-table">
             <thead>
@@ -45,7 +48,7 @@
                 columnDefs: [ {
                         "targets": -1,
                         "data": null,
-                        "defaultContent": '<button class="btn btn-primary">Valider</button>'
+                        "defaultContent": '<button class="btn btn-primary">Détails avant Validation</button>'
                     } ],
                 language: {
                         "sProcessing":     "Traitement en cours...",
@@ -80,7 +83,7 @@
             // fonction de redirection on click avec l'id de la collect passé en get
             $('#collects-table tbody').on( 'click', 'button', function () {
                 var data = table.row( $(this).parents('tr') ).data();
-                window.location.replace("/validate-collect?id="+data['id']);
+                window.location.replace("/validateCollect?id="+data['id']);
             } );
 
         });

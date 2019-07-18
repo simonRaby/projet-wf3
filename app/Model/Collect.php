@@ -15,4 +15,9 @@ class Collect extends Model
     {
         return $this->hasMany(Article::class);
     }
+
+    public function  status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }
