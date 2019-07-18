@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/validateCollect', 'ValidateCollectController@index');
         Route::post('/validateCollect', 'ValidateCollectController@store');
-        Route::get('/bonCollectPdf', 'ValidateCollectController@pdfCollect');
+        Route::get('/bonCollectPdf', 'ValidateCollectController@pdfBonCollect');
     });
 
     Route::group(['middleware' => ['partner']], function () {
@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/collectHistory', 'CollectHistoryController@index');
         Route::get('/collectHistoryData', 'CollectHistoryController@anyData')->name('collectHistoryData');
+        Route::get('/bonCollectPdfHistory', 'CollectHistoryController@pdfCollectHistory');
     });
 });
 

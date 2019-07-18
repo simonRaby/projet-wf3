@@ -49,7 +49,7 @@
                     },
                     { targets : [5],
                     render : function (data, type, row) {
-                        return data == '1' ? 'erreur' : 'valide'
+                        return data == '1' ? 'erreur' : 'Aucune'
                         }
                     }
                 ],
@@ -84,9 +84,10 @@
                     }
             });
             // fonction de redirection on click avec l'id de la collect passé en get
-            $('#collects-table tbody').on( 'click', 'button', function () {
+            $('#history-table tbody').on( 'click', 'button', function () {
+
                 var data = table.row( $(this).parents('tr') ).data();
-                window.location.replace("/validateCollect?id="+data['id']);
+                window.location.href= "/bonCollectPdfHistory?action=download&collectId="+data['id'];
             } );
 
         });

@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use App\Model\Collect;
 use App\Model\AssociationArticle;
 use PDF;
+use App\Traits\PdfPerso;
 
 class ValidateCollectController extends Controller
 {
+    use PdfPerso;
+
     public function index(Request $request)
     {
         $id = $request->id;
@@ -47,7 +50,7 @@ class ValidateCollectController extends Controller
             foreach ($rejected as $id => $value) {
                 $association = AssociationArticle::find($id);
                 $association->is_rejected = 1;
-                //$association->save();
+                $association->save();
 
                 $toBeBanned[] = $id;
             }
@@ -64,7 +67,7 @@ class ValidateCollectController extends Controller
                     $association->quantity_collected = $qtyCollected;
                     $association->is_error = 1;
                 }
-                // $association->save();
+                $association->save();
             }
         }
 
@@ -79,7 +82,7 @@ class ValidateCollectController extends Controller
         if ($collectError) {
             $collect->is_error = 1;
         }
-        //$collect->save();
+        $collect->save();
         $collectId = 2;
         session()->flash('successMessage',  'Collect validé');
         session()->flash('collectId', $collectId);
@@ -90,54 +93,12 @@ class ValidateCollectController extends Controller
         return redirect()->route('listCollect');
     }
 
-    public function pdfCollect(Request $request)
+    public function pdfBonCollect(Request $request)
     {
         $action = $request->action;
         $collectId = $request->collectId;
 
-        $collect = Collect::find($collectId);
-        $partner = $collect->partner;
-        $articles = $collect->article;
-        $collectPdf['collectedAt'] = $collect->collected_at;
-        $collectPdf['partnerName'] = $partner->name;
-        $collectPdf['partnerAdress'] = $partner->address;
-        $collectPdf['partnerTel'] = $partner->tel;
-        $collectPdf['partnerCp'] =  $partner->villeFrance->ville_code_postal;
-        $collectPdf['partnerCity'] = $partner->villeFrance->ville_nom_reel;
-        if ($collect->status_id == 2) {
-            $collectPdf['articles'] = '';
-        } elseif ($collect->status_id == 3) {
-            $i = 1;
-            foreach ($articles as $article) {
-                foreach ($article->associationArticle as $assoc) {
-                    $collectPdf['articles'][$i]['name'] = $article->name;
-                    $collectPdf['articles'][$i]['category'] = $article->category->name;
-                    $collectPdf['articles'][$i]['gender'] = $article->gender->label;
-                    $collectPdf['articles'][$i]['size'] = $assoc->size->label;
-                    $collectPdf['articles'][$i]['color'] = $assoc->color->label;
-                    $collectPdf['articles'][$i]['quantity'] = $assoc->quantity;
-                    $collectPdf['articles'][$i]['quantityCollected'] = $assoc->quantity_collected ?: 0;
-                    $i++;
-                }
-            }
-        }
-
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadView('layouts.pdf-collect', $collectPdf);
-
-        switch ($action) {
-            case 'save':
-                return $pdf->save('collect.pdf');
-                break;
-            case 'stream':
-                return $pdf->stream();
-                break;
-            case 'download':
-                return $pdf->download('collect.pdf');
-                break;
-            default:
-                return false;
-                break;
-        }
+        $pdf = $this->pdfCollect($action, $collectId);
+        return $pdf;
     }
 }

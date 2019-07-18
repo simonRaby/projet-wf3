@@ -6,9 +6,13 @@ use App\Model\Collect;
 use Yajra\Datatables\Datatables;
 use Auth;
 use Illuminate\Http\Request;
+use App\Traits\PdfPerso;
 
 class CollectHistoryController extends Controller
 {
+
+    use PdfPerso;
+
     public function index()
     {
 
@@ -31,14 +35,18 @@ class CollectHistoryController extends Controller
                     $qty += $assoc->quantity_collected;
                 }
             }
-            // if ($collect->is_error) {
-            //     $collect->error = '<i class="fas fa-check-circle"></i>';
-            // } else {
-            //     $collect->error =  '<i class="fas fa-check-circle"></i>';
-            // }
             $collect->quantity_collected = $qty;
         }
 
         return Datatables::of($collects)->make(true);
+    }
+
+    public function pdfCollectHistory(Request $request)
+    {
+
+        $action = $request->action;
+        $id = $request->collectId;
+        $pdf = $this->pdfCollect($action, $id);
+        return $pdf;
     }
 }
