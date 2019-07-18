@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('/storage/images/logo.png') }}" alt="logo">
@@ -40,7 +40,7 @@
                             <a class="nav-link" href="/about">A propos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/scan">scannez pour trouver</a>
+                            <a class="nav-link" href="/scan">scannez un QrCode</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/contact">Contact</a>
@@ -116,6 +116,13 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="footer">
+            <ul>
+                <li>copyright 2019</li>
+                <li>Condition utilisation</li>
+                <li>site map</li>
+            </ul>
+        </footer>
     </div>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

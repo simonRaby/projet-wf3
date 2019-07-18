@@ -62,22 +62,23 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/validateCollect', 'ValidateCollectController@store');
         Route::get('/bonCollectPdf', 'ValidateCollectController@pdfBonCollect');
 
-        Route::get('/list-article', 'ListarticleController@index');
-        Route::get('/list-article-data', 'ListarticleController@anyData')->name('listarticledata');
+        Route::get('/listArticle', 'ListarticleController@index');
+        Route::get('/listArticle-data', 'ListarticleController@anyData')->name('listarticledata');
     });
 
     Route::group(['middleware' => ['partner']], function () {
-        Route::get('/addArticle', 'AddArticleController@index');
 
-        Route::get('/recapCollect', 'RecapCollectController@index');
-        Route::post('/recapCollect', 'RecapCollectController@store');
+        Route::get('/recapCollect', 'RecapCollectController@index')->name('recapCollect');
+        Route::get('/recapCollectValidate', 'RecapCollectController@store');
+        Route::get('/recapCollectCancel', 'RecapCollectController@cancel');
 
         Route::get('/collectHistory', 'CollectHistoryController@index');
-        Route::get('/collectHistoryData', 'CollectHistoryController@anyData')->name('collectHistoryData');
+        Route::get('/collectHistoryValidate', 'CollectHistoryController@tableCollectValidate')->name('collectHistoryValidate');
+        Route::get('/collectHistoryWaiting', 'CollectHistoryController@tableCollectWaiting')->name('collectHistoryWaiting');
         Route::get('/bonCollectPdfHistory', 'CollectHistoryController@pdfCollectHistory');
 
-        Route::get('/add-article', 'AddArticleController@index');
-        Route::post('/add-article', 'AddArticleController@add');
+        Route::get('/addArticle', 'AddArticleController@index');
+        Route::post('/addArticle', 'AddArticleController@add');
         Route::get('/categoryAjax', 'AddArticleController@category');
 
     });

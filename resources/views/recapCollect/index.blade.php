@@ -16,17 +16,21 @@
               </tr>
             </thead>
             <tbody>
-                {{-- @if (isset($collect) && $collect)
-                {{ $i = 0 }}
-                    @foreach ( $collect['articles'] as $article)
+                @if (isset($collect) && $collect)
+                <?php $i=0; ?>
+
+                    @foreach ( $collect as $article)
                     <tr>
                         <td>{{ $i }}</td>
                         <td>{{ $article['name'] }}</td>
                         <td>{{ $article['category'] }}</td>
                         <td>{{ $article['gender'] }}</td>
                         <td>{{ $article['marque'] }}</td>
-                        <td><span class="caret"></span>
-                            <table class="table" style="display: none;">
+                        <td class="tdDropdown">
+                            <a class="btnDropdown" >
+                                Plus de détails &darr;
+                            </a>
+                            <table class="table tableDropdown table-sm ">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -36,7 +40,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   {{ $x = 0 }}
+                                   <?php $x=0; ?>
                                     @foreach ( $article['declinations'] as $declination)
                                         <tr>
                                             <th scope="row">{{ $x }}</th>
@@ -44,89 +48,22 @@
                                             <td>{{ $declination['color'] }}</td>
                                             <td>{{ $declination['quantity'] }}</td>
                                         </tr>
-                                        {{ $x++ }}
+                                        <?php $x++; ?>
                                     @endforeach
                                 </tbody>
                             </table>
                         </td>
                     </tr>
-                    {{ $i++ }}
+                    <?php $i++; ?>
                     @endforeach
-                    </tbody>
-                </table>
-                @endif --}}
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td class="tdDropdown"><a class="btnDropdown" >
-                            Plus de détails &darr;
-                        </a>
-                    <table class="table tableDropdown table-sm ">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Taille</th>
-                            <th scope="col">Couleur</th>
-                            <th scope="col">Quantité</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>m</td>
-                              <td>rouge</td>
-                              <td>25</td>
-                            </tr>
-                            <tr>
-                                    <th scope="row">2</th>
-                                    <td>m</td>
-                                    <td>rouge</td>
-                                    <td>25</td>
-                                  </tr>
-                        </tbody>
-                    </table>
-                </td>
-                </tr>
-                <tr>
-                        <th scope="row">2</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td class="tdDropdown"><a class="btnDropdown" >
-                                  Plus de détails &darr;
-                              </a>
-                          <table class="table tableDropdown table-sm ">
-                              <thead>
-                                <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Taille</th>
-                                  <th scope="col">Couleur</th>
-                                  <th scope="col">Quantité</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>m</td>
-                                    <td>rouge</td>
-                                    <td>25</td>
-                                  </tr>
-                                  <tr>
-                                          <th scope="row">2</th>
-                                          <td>m</td>
-                                          <td>rouge</td>
-                                          <td>25</td>
-                                        </tr>
-                              </tbody>
-                          </table>
-                      </td>
-                      </tr>
+
+                @else
+                    <tr>Aucune collecte en cours</tr>
+                @endif
             </tbody>
         </table>
+        <a href="/recapCollectValidate" class="btn btn-primary">Valider</a>
+        <a href="/recapCollectCancel" class="btn btn-primary">Annuler</a>
     </div>
 @endsection
 

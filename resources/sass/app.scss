@@ -8,10 +8,13 @@
 @import '~bootstrap/scss/bootstrap';
 
 //********************* MASTER BLADE ***************//
+
 .navbar-brand{
     img{
         height: 120px;
     }
+    margin-bottom: -50px;
+    margin-top: -15px;
 
 }
 .navbar-collapse{
@@ -44,6 +47,9 @@
     font-size: 3rem;
 }
 
+h1{
+    color: #B35736;
+}
 /**************** RecapCollect *********/
 #tableCollect{
     text-align: center;

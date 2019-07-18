@@ -107,10 +107,10 @@
                 </div>
                 <div class="row text-center mt-5 mb-5">
                     <div class="col-6">
-                        <button type="submit" class="btn btn-primary" name="btn" value="0">Enregistre</button>
+                        <button type="submit" class="btn btn-primary" name="btn" value="0">Enregistrer</button>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn btn-primary" name="btn" value="1">Enregistre & Ajouter un nouveaux produit</button>
+                        <button type="submit" class="btn btn-primary" name="btn" value="1">Enregistrer & Ajouter un nouveaux produit</button>
                     </div>
                 </div>
          </form>
