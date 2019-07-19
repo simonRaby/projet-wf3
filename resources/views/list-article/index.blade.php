@@ -1,7 +1,6 @@
 @extends('layouts.master')
-
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid est-test">
         <div class="container">
             <h1>Liste des Articles</h1>
             {{-- Message en session flash si le mail c'esy bien envoyé --}}
@@ -102,3 +101,12 @@
         });
     </script>
 @endsection
+@section('javascript')
+    <script>
+
+
+
+
+    </script>
+@endsection
+

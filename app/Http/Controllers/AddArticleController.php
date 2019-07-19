@@ -7,6 +7,8 @@ use App\Model\Color;
 use App\Model\Gender;
 use App\Model\Marque;
 use App\Model\Size;
+use Validator;
+use Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -38,7 +40,28 @@ class AddArticleController extends Controller
     public function add(Request $request)
     {
 
-        $name = $request->name;
+        $values = $request->all();
+        $rules = [
+            'category_id'       => 'required|numeric',
+            'marque_id'         => 'numeric',
+            'gender_id'         => 'required|numeric',
+            'name'              => 'string|required',
+            'size_id[]'           => '|numeric',
+            'color_id[]'          => '|numeric',
+            'quantity[]'          => '|numeric&',
+        ];
+        $validator = validator::make ($values, $rules);
+
+        if($validator->fails()){
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+
+      ///////////////////////////////////////////////////
+        $name= $request->name;
         $category_id = $request->category_id;
         if ($request->marqueNull != null) {
             $marque_id = $request->marqueNull;
@@ -65,14 +88,14 @@ class AddArticleController extends Controller
 
         $btn = $request->btn;
 
-        if ($btn == 0) {
+        if($btn == 0){
 
             return redirect()->route('recapCollect');
-        } else {
-            $categories = Category::all();
-            $marques = Marque::all();
-            $genders = Gender::all();
-            $colors = Color::all();
+        }else{
+            $categories     = Category::all();
+            $marques        = Marque::all();
+            $genders        = Gender::all();
+            $colors         = Color::all();
 
             return view('add-article.index')
                 ->with('categories', $categories)

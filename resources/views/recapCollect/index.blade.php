@@ -2,24 +2,25 @@
 
 
 @section('content')
-    <div class="container">
-        <h1>Récapitulatif de la collecte avant validation</h1>
+    <div class="container-fluid est-test">
         <table class="table table-hover text-center" id="tableCollect">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">catégorie</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Marque</th>
-                <th scope="col">Détails</th>
-              </tr>
-            </thead>
+        <div class="container">
+            <h1>Récapitulatif de la collecte avant validation</h1>
+                <?php $i=0; ?>
+                    @foreach ( $collect as $article)
+
             <tbody>
                 @if (isset($collect) && $collect)
-                <?php $i=0; ?>
-
-                    @foreach ( $collect as $article)
+            </thead>
+              </tr>
+                <th scope="col">Marque</th>
+                <th scope="col">Détails</th>
+                <th scope="col">Genre</th>
+                <th scope="col">catégorie</th>
+                <th scope="col">Nom</th>
+                <th scope="col">#</th>
+              <tr>
+            <thead>
                     <tr>
                         <td>{{ $i }}</td>
                         <td>{{ $article['name'] }}</td>
@@ -65,6 +66,7 @@
         <a href="/recapCollectValidate" class="btn btn-primary">Valider</a>
         <a href="/recapCollectCancel" class="btn btn-primary">Annuler</a>
     </div>
+
 @endsection
 
 @section('script')

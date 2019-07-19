@@ -10695,6 +10695,10 @@ body {
   align-self: flex-end;
 }
 
+.est-video {
+  border-radius: 10px;
+  border: 2px solid gray;
+  box-shadow: 1px 1px 10px 0px #656565;
 .navbar .navbar-collapse a.nav-link {
   color: #fff;
 }
@@ -10766,6 +10770,9 @@ body {
   color: gray;
 }
 
+.est-img {
+  width: 80%;
+  height: 50%;
 .est-img {
   width: 80%;
   height: 50%;
@@ -10855,5 +10862,25 @@ table.table td {
 
 .card i {
   cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .est-test {
+    overflow-x: auto;
+  }
+}
+
+#tableCollect {
+  text-align: center;
+}
+
+.tableDropdown {
+  display: none;
+  width: 300px;
+}
+
+.table td.tdDropdown {
+  width: 300px;
+  padding: 12px 0;
 }
 

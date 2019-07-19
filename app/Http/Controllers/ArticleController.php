@@ -12,7 +12,7 @@ class ArticleController extends Controller
     {
         $id = $request->id;
         $article = Article::find($id);
-//        dd($article);
+
         $articles['id_product'] = $article->id;
         $articles['name'] = $article->name;
         $articles['category'] = $article->category->name;
@@ -24,18 +24,18 @@ class ArticleController extends Controller
             $articles['id'][$assoc->color->label][$assoc->size->label] = $assoc->id;
         }
 
-//                dd($articles);
+
         return view('article.index')->with('articles', $articles);
     }
 
     public function Vendu(request $request){
 
-//            dd($request);
+
 
 
             foreach($request->vendu as $key => $val){
                 if( $val != null){
-//                   $id_final =  $key ;
+
                    $total[$key]= $val;
                    $data= AssociationArticle::find($key);
                    $stock = (int)$data['stock'] -  (int)$request->vendu[$key];
@@ -57,7 +57,7 @@ class ArticleController extends Controller
             $articles['id'][$assoc->color->label][$assoc->size->label] = $assoc->id;
         }
 
-//        dd($articles);
+
 
         return redirect()->route('article', ['id' => $id])->with('articles', $articles);
 
