@@ -88,8 +88,6 @@ class ValidateCollectController extends Controller
         session()->flash('collectId', $collectId);
 
 
-        //return $this->pdfCollect('download', $collectId);
-
         return redirect()->route('listCollect');
     }
 

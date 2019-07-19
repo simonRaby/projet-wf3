@@ -73,7 +73,7 @@
                             @endif
                             @if (Auth::user()->role_id  == 3)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/account">Mon compte</a>
+                                    <a class="nav-link" href="/AccountPartner">Mon compte</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/addArticle">Créer une collecte</a>
@@ -121,7 +121,6 @@
             <ul>
                 <li>copyright 2019</li>
                 <li>Condition utilisation</li>
-                <li>site map</li>
             </ul>
         </footer>
     </div>

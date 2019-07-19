@@ -12,7 +12,7 @@ class ContactController extends Controller
 {
     public $select = [
         'Demande de renseignement concernant l\'association',
-        'Devinir partenaire de l\'association',
+        'Devenir partenaire de l\'association',
         'Un probleme avec l\'un de nos article',
         'Envie de devenir bénévole'
     ];

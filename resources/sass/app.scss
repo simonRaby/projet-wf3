@@ -172,4 +172,29 @@ table.table{
 .table td.tdDropdown{
     width: 300px;
     padding: 12px 0;
+    a{
+        cursor: pointer;
+    }
+}
+/********************** About ************/
+.about{
+    .image{
+
+        margin: 0;
+        padding: 0;
+        img{
+            width: 100%;
+            object-fit: cover;
+            height: 150px;
+        }
+    }
+    p{
+        padding: 20px;
+    }
+}
+/***************** AddArticle **************/
+.card{
+    i{
+        cursor: pointer;
+    }
 }

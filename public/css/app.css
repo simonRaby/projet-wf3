@@ -10829,3 +10829,31 @@ table.table td {
   padding: 12px 0;
 }
 
+.table td.tdDropdown a {
+  cursor: pointer;
+}
+
+/********************** About ************/
+
+.about .image {
+  margin: 0;
+  padding: 0;
+}
+
+.about .image img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 150px;
+}
+
+.about p {
+  padding: 20px;
+}
+
+/***************** AddArticle **************/
+
+.card i {
+  cursor: pointer;
+}
+

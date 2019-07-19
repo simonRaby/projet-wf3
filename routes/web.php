@@ -27,8 +27,8 @@ Route::post('/contact', 'ContactController@store');
 
 Route::get('/scan', 'ScanController@index');
 
-Route::get('/article', 'ArticleController@index' )->name('article');
-Route::post('/article', 'ArticleController@vendu' );
+Route::get('/article', 'ArticleController@index')->name('article');
+Route::post('/article', 'ArticleController@vendu');
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -42,14 +42,13 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('adminAddMember', 'AdminAddMemberController@index');
         Route::post('adminAddMember', 'AdminAddMemberController@store');
-        Route::get('updateAdminMember','AdminAddMemberController@edit');
-        Route::post('updateAdminMember','AdminAddMemberController@update');
-        Route::get('AjaxDeleteAdminMember','AdminAddMemberController@delete');
+        Route::get('updateAdminMember', 'AdminAddMemberController@edit');
+        Route::post('updateAdminMember', 'AdminAddMemberController@update');
+        Route::get('AjaxDeleteAdminMember', 'AdminAddMemberController@delete');
 
-        Route::get('adminAddPartner','AdminAddPartnerController@index');
-        Route::post('adminAddPartner','AdminAddPartnerController@store');
+        Route::get('adminAddPartner', 'AdminAddPartnerController@index');
+        Route::post('adminAddPartner', 'AdminAddPartnerController@store');
         Route::post('AjaxAdminAddPartner', 'AdminAddPartnerController@AjaxPostalCode');
-
     });
 
 
@@ -81,6 +80,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/addArticle', 'AddArticleController@add');
         Route::get('/categoryAjax', 'AddArticleController@category');
 
+        Route::get('/AccountPartner', 'AccountPartnerController@index');
+        Route::get('/AccountPartner/update', 'AccountPartnerUpdateController@index');
+        Route::post('/AccountPartner/update', 'AccountPartnerUpdateController@edit');
     });
 });
 
