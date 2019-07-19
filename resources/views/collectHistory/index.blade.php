@@ -2,60 +2,59 @@
 
 
 @section('content')
-    <div class="container">
-        <h1>Historique des collects</h1>
+    <div class="container-fluid est-test">
+        <div class="container">
+            <h1>Historique des collects</h1>
             @if(session()->has('successMessage'))
                 <div class="alert alert-success">
                     {{ session('successMessage') }}
                 </div>
             @endif
-        <div class="tabs">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a href="#users" role="tab" data-toggle="tab" class="nav-link aTab" id="validate">
-                        Collectes validées
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a href="#posts" role="tab" data-toggle="tab" class="nav-link aTab" id="waiting">
-                        Collectes en attentes
-                    </a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade active in" id="users">
-                    <table class="table table-hover text-center" id="history-table-validate">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Date de création</th>
-                                <th>Date de collectes</th>
-                                <th>Quantité collecté</th>
-                                <th>Statut</th>
-                                <th>Erreur quantité</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="tab-pane fade" id="posts">
-                    <table class="table table-hover text-center" id="history-table-waiting">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Date de création</th>
-                                <th>Quantité</th>
-                                <th>Statut</th>
-                            </tr>
-                        </thead>
-                    </table>
+            <div class="tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a href="#users" role="tab" data-toggle="tab" class="nav-link aTab" id="validate">
+                            Collectes validées
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#posts" role="tab" data-toggle="tab" class="nav-link aTab" id="waiting">
+                            Collectes en attentes
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="users">
+                        <table class="table table-hover text-center" id="history-table-validate">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Date de création</th>
+                                    <th>Date de collectes</th>
+                                    <th>Quantité collecté</th>
+                                    <th>Statut</th>
+                                    <th>Erreur quantité</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="posts">
+                        <table class="table table-hover text-center" id="history-table-waiting">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Date de création</th>
+                                    <th>Quantité</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
-    <div class="container est-test">
         </div>
     </div>
-
-
 @endsection
 
 
@@ -175,7 +174,7 @@
             }
 
             // fonction de redirection on click avec l'id de la collect passé en get
-            $('#history-table tbody').on( 'click', 'button', function () {
+            $('#history-table-validate tbody').on( 'click', 'button', function () {
 
                 var data = table.row( $(this).parents('tr') ).data();
                 window.location.href= "/bonCollectPdfHistory?action=download&collectId="+data['id'];

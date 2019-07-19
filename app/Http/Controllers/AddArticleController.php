@@ -22,7 +22,7 @@ class AddArticleController extends Controller
         $genders = Gender::all();
         $colors = Color::all();
 
-        return view('add-article.index')
+        return view('addArticle.index')
             ->with('categories', $categories)
             ->with('marques', $marques)
             ->with('genders', $genders)
@@ -43,16 +43,15 @@ class AddArticleController extends Controller
         $values = $request->all();
         $rules = [
             'category_id'       => 'required|numeric',
-            'marque_id'         => 'numeric',
             'gender_id'         => 'required|numeric',
             'name'              => 'string|required',
             'size_id[]'           => '|numeric',
             'color_id[]'          => '|numeric',
             'quantity[]'          => '|numeric&',
         ];
-        $validator = validator::make ($values, $rules);
+        $validator = validator::make($values, $rules);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return Redirect::back()
                 ->withErrors($validator)
                 ->withInput();
@@ -60,8 +59,8 @@ class AddArticleController extends Controller
 
 
 
-      ///////////////////////////////////////////////////
-        $name= $request->name;
+        ///////////////////////////////////////////////////
+        $name = $request->name;
         $category_id = $request->category_id;
         if ($request->marqueNull != null) {
             $marque_id = $request->marqueNull;
@@ -88,16 +87,16 @@ class AddArticleController extends Controller
 
         $btn = $request->btn;
 
-        if($btn == 0){
+        if ($btn == 0) {
 
             return redirect()->route('recapCollect');
-        }else{
+        } else {
             $categories     = Category::all();
             $marques        = Marque::all();
             $genders        = Gender::all();
             $colors         = Color::all();
 
-            return view('add-article.index')
+            return view('addArticle.index')
                 ->with('categories', $categories)
                 ->with('marques', $marques)
                 ->with('genders', $genders)

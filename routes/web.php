@@ -18,7 +18,6 @@ Route::get('/', function () {
 })->name('home');
 
 Auth::routes();
-Auth::routes(['verify' => true]);
 Auth::routes(['register' => false]);
 Auth::routes(['reset' => true]);
 
@@ -40,19 +39,22 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('listMember', 'ListMemberController@index');
 
+        Route::get('listPartnerData', 'listPartnerController@listPartnerData')->name('listPartnerData');
         Route::get('listPartner', 'ListPartnerController@index');
 
         Route::get('adminAddMember', 'AdminAddMemberController@index');
         Route::post('adminAddMember', 'AdminAddMemberController@store');
         Route::get('updateAdminMember', 'AdminAddMemberController@edit');
         Route::post('updateAdminMember', 'AdminAddMemberController@update');
-        Route::get('AjaxDeleteAdminMember', 'AdminAddMemberController@delete');
+        Route::get('AjaxDeleteAdminMember', 'AdminAddMemberController@ajaxDeleteAdminMember');
 
         Route::get('adminAddPartner', 'AdminAddPartnerController@index');
         Route::post('adminAddPartner', 'AdminAddPartnerController@store');
-        Route::post('AjaxAdminAddPartner', 'AdminAddPartnerController@AjaxPostalCode');
+        Route::get('editAdminPartner', 'AdminAddPartnerController@edit');
+        Route::post('updateAdminPartner', 'AdminAddPartnerController@update');
+        Route::get('deleteAdminPartner', 'AdminAddPartnerController@delete');
+        Route::post('AjaxAdminAddPartner', 'AdminAddPartnerController@ajaxPostalCode');
     });
-
 
     Route::group(['middleware' => ['memberAdmin']], function () {
 
@@ -90,18 +92,3 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('listMember', 'ListMemberController@index');
-Route::get('listPartnerData', 'listPartnerController@listPartnerData')->name('listPartnerData');
-Route::get('listPartner', 'ListPartnerController@index');
-Route::get('adminAddMember', 'AdminAddMemberController@index');
-Route::post('adminAddMember', 'AdminAddMemberController@store');
-Route::get('updateAdminMember','AdminAddMemberController@edit');
-Route::post('updateAdminMember','AdminAddMemberController@update');
-Route::get('editAdminPartner','AdminAddPartnerController@edit');
-Route::post('updateAdminPartner', 'AdminAddPartnerController@update');
-Route::get('deleteAdminPartner', 'AdminAddPartnerController@delete');
-Route::get('adminAddPartner','AdminAddPartnerController@index');
-Route::post('adminAddPartner','AdminAddPartnerController@store');
-Route::post('AjaxAdminAddPartner', 'AdminAddPartnerController@ajaxPostalCode');
-Route::get('AjaxDeleteAdminMember','AdminAddMemberController@ajaxDeleteAdminMember');

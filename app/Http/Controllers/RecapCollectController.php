@@ -22,10 +22,10 @@ class RecapCollectController extends Controller
             $collect = $request->session()->get('collect');
             $i = 0;
             foreach ($collect as $article) {
-                if(is_numeric($article['marque_id'])){
+                if (is_numeric($article['marque_id'])) {
                     $marque = Marque::find($article['marque_id']);
                     $collect[$i]['marque'] =  $marque->label;
-                }else{
+                } else {
                     $collect[$i]['marque'] = $article['marque_id'];
                 }
                 $category = Category::find($article['category_id']);
@@ -49,7 +49,8 @@ class RecapCollectController extends Controller
         return view('recapCollect.index')->with('collect', $collect);
     }
 
-    public function cancel(){
+    public function cancel()
+    {
         session()->forget('collect');
 
         return redirect('/addArticle');
@@ -67,19 +68,18 @@ class RecapCollectController extends Controller
             $newCollect->save();
             foreach ($collect as $article) {
                 $newArticle = new Article;
-                if(is_numeric($article['marque_id'])){
-                    $newArticle->marque_id = $article['marque_id'] ;
-                }else{
-                    $verifMarque = Marque::where('label', $article['marque_id'] )->first();
-                    if($verifMarque){
+                if (is_numeric($article['marque_id'])) {
+                    $newArticle->marque_id = $article['marque_id'];
+                } else {
+                    $verifMarque = Marque::where('label', $article['marque_id'])->first();
+                    if ($verifMarque) {
                         $newArticle->marque_id =  $verifMarque->id;
-                    }else{
+                    } else {
                         $newMarque = new Marque;
                         $newMarque->label = $article['marque_id'];
                         $newMarque->save();
                         $newArticle->marque_id =  $newMarque->id;
                     }
-
                 }
                 $newArticle->rank_id = 1;
                 $newArticle->collect_id = $newCollect->id;
@@ -89,10 +89,13 @@ class RecapCollectController extends Controller
 
                 //creation du qr code
                 $qrName = uniqid('qr_');
-                QrCode::size(500)->generate('https://www.eos/article?id='.$newArticle->id, 'storage/images/qr/'.$qrName.'.svg');
 
-                $newArticle->qrcode_img = $qrName.'.svg';
+
+
+                $newArticle->qrcode_img = $qrName . '.svg';
                 $newArticle->save();
+
+                QrCode::size(500)->generate('https://www.eos.test/article?id=' . $newArticle->id, 'storage/images/qr/' . $qrName . '.svg');
 
                 foreach ($article['declinations'] as $declination) {
                     $newDeclination = new AssociationArticle;

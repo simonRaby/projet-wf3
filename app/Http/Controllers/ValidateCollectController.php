@@ -74,16 +74,16 @@ class ValidateCollectController extends Controller
         $collect = Collect::find($collectId);
         if (!$allRejected) {
             $collect->collected_at = $date;
-            $collect->status_id = 2; //Change le status de la collect a collecté
+            $collect->status_id = 3; //Change le status de la collect a collecté
         } else {
             $collectError = true;
-            $collect->status_id = 3; //Change le status de la collect a rejeté
+            $collect->status_id = 2; //Change le status de la collect a rejeté
         }
         if ($collectError) {
             $collect->is_error = 1;
         }
         $collect->save();
-        $collectId = 2;
+
         session()->flash('successMessage',  'Collect validé');
         session()->flash('collectId', $collectId);
 

@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
-
-    <!--$2y$10$Ga/TyS.jj.R2LiUZcS50qOiDUYaUTPmP0W09eTOFtg7jnloc7oTKG-->
+<div class="container-fluid est-test">
     <div class='container'>
         <div class='col-8 offset-2'>
             @if (isset($successMessage))
@@ -43,6 +42,7 @@
             <a href="adminAddMember" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Ajouter un Membre</a>
         </div>
     </div>
+</div>
 @endsection
 @section('script')
     <script>
