@@ -19,7 +19,11 @@ Route::get('/', function () {
 Route::get('/scan', 'ScanController@index');
 
 Auth::routes();
+Auth::routes(['verify' => true]);
 Auth::routes(['register' => false]);
+
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+
 Route::get('/about', 'AboutController@index');
 
 Route::get('/contact', 'ContactController@index');
@@ -49,6 +53,10 @@ Route::post('updateAdminMember','AdminAddMemberController@update');
 Route::get('editAdminPartner','AdminAddPartnerController@edit');
 Route::post('updateAdminPartner', 'AdminAddPartnerController@update');
 Route::get('deleteAdminPartner', 'AdminAddPartnerController@delete');
+
+Route::get('emailValidatePartner', function (){
+    return view('auth.verify');
+});
 
 
 Route::get('adminAddPartner','AdminAddPartnerController@index');

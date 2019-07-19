@@ -4,10 +4,10 @@
 
     <div class="container text-center">
         <div class="col-5 offset-3">
-            @if (isset($successMessage))
+            @if(isset($successMessage))
                 <div class="alert alert-success alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>{{$successMessage}}</strong>
+                    <button type="button" class="close" data-dismiss="alert">×</button>
                 </div>
             @endif
             @if(isset($edit))
@@ -123,9 +123,9 @@
 
                 <div class="form-group">
                     <label for="partnerSiret">SIRET</label><br>
-                    <input value="{{isset($edit)?$edit->partner->siret:old('partnerAddress')}}"
+                    <input value="{{isset($edit)?$edit->partner->siret:old('partnerSiret')}}"
                            class="form-control"
-                           type="text" name="partnerSiret"
+                           type="tel" name="partnerSiret"
                            required>
                     @if($errors->has('partnerSiret'))
                         <div class="alert alert-danger" role="alert">
