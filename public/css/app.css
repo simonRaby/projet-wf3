@@ -10644,47 +10644,122 @@ a.text-dark:focus {
   }
 }
 
-.navbar-brand img {
+body {
+  font-family: "Ubuntu", sans-serif;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.content {
+  flex: 1 0 auto;
+  margin-top: 25px;
+}
+
+.footer {
+  flex-shrink: 0;
+  background-color: #3D50CC;
+}
+
+.footer ul {
+  margin: 0;
+  padding: 10px 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.footer ul li {
+  margin: 0 10px;
+  color: #fff;
+}
+
+.navbar {
+  background-color: #3D50CC;
+}
+
+.navbar .navbar-brand {
+  margin-bottom: -50px;
+  margin-top: -15px;
+}
+
+.navbar .navbar-brand img {
   height: 120px;
 }
 
-.navbar-collapse {
+.navbar .navbar-collapse {
   align-self: flex-end;
 }
 
-.est-video {
-  border-radius: 10px;
-  border: 2px solid gray;
-  box-shadow: 1px 1px 10px 0px #656565;
+.navbar .navbar-collapse a.nav-link {
+  color: #fff;
 }
+
+.navbar-nav {
+  top: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.navbar-nav li.nav-item {
+  margin: 0 5px;
+  position: relative;
+}
+
+.navbar-nav li.nav-item a.nav-link {
+  text-decoration: none;
+  display: block;
+  padding: 5px 0;
+  font-family: "Open Sans";
+  font-size: 0.9rem;
+  line-height: 1;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #FF8D65, #FF8D65 50%, #fff 50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav li.nav-item a.nav-link:before {
+  display: block;
+  content: "";
+  width: 0;
+  height: 3px;
+  bottom: 5px;
+  left: 0;
+  bottom: -3px;
+  z-index: 0;
+  position: absolute;
+  background: #FF8D65;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav li.nav-item a.nav-link:hover {
+  background-position: 0%;
+}
+
+.navbar-nav li.nav-item a.nav-link:hover:before {
+  width: 100%;
+}
+
 .est-video {
   border-radius: 10px;
   border: 2px solid gray;
   box-shadow: 1px 1px 10px 0px #656565;
   width: 100%;
 }
-
-.est-h1 {
-  font-size: 1.5rem;
-  color: gray;
-}
-
-/**************** RecapCollect *********/
-
-#tableCollect {
-  text-align: center;
-}
-
-.tableDropdown {
-  display: none;
-  width: 300px;
-}
-
-.table td.tdDropdown {
-  width: 300px;
-  padding: 12px 0;
-}
-
 
 .est-h1 {
   font-size: 1.5rem;
@@ -10707,5 +10782,78 @@ a.text-dark:focus {
 .est-logo {
   color: lightslategray;
   font-size: 3rem;
+}
+
+h1,
+h2 {
+  color: #FF8D65;
+  margin-bottom: 25px;
+}
+
+.btn-primary {
+  background-color: #2e65db;
+  border-color: #3D50CC;
+}
+
+.btn-primary:hover {
+  background-color: #0031b9;
+  border-color: #03168f;
+}
+
+table.table thead {
+  background-color: #B4FF80;
+}
+
+table.table td {
+  vertical-align: middle;
+}
+
+.card-header i,
+.card-body i {
+  color: #FF8D65;
+}
+
+/**************** RecapCollect *********/
+
+#tableCollect {
+  text-align: center;
+}
+
+.tableDropdown {
+  display: none;
+  width: 300px;
+}
+
+.table td.tdDropdown {
+  width: 300px;
+  padding: 12px 0;
+}
+
+.table td.tdDropdown a {
+  cursor: pointer;
+}
+
+/********************** About ************/
+
+.about .image {
+  margin: 0;
+  padding: 0;
+}
+
+.about .image img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 150px;
+}
+
+.about p {
+  padding: 20px;
+}
+
+/***************** AddArticle **************/
+
+.card i {
+  cursor: pointer;
 }
 

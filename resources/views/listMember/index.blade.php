@@ -9,7 +9,7 @@
     <div class='container'>
         <div class='col-8 offset-2'>
             <h2>Membres de l'association</h2>
-            <table class="table table-striped table-light">
+            <table class="table table-hover text-center">
                 <thead>
                 <tr>
                     <th scope="col">Nom</th>

@@ -1,7 +1,9 @@
 @extends('layouts.master')
+
 @section('css')
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
-    @endsection
+@endsection
+
 @section('content')
 
     <div class="container-fluid">
@@ -10,7 +12,7 @@
             <form action="" method="POST" id="formulaire">
                 <div class="card">
                     <div class="card-header">
-                        <h1>Article</h1>
+                        <h2>Article</h2>
                     </div>
 
                         @csrf
@@ -58,7 +60,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-6">
-                                    <h1>Déclinaison(s)</h1>
+                                    <h2>Déclinaison(s)</h2>
                                 </div>
                                 <div class="col-6 text-right">
                                         <i class="fas fa-plus-circle est-logo"></i>
@@ -107,10 +109,10 @@
                 </div>
                 <div class="row text-center mt-5 mb-5">
                     <div class="col-6">
-                        <button type="submit" class="btn btn-primary" name="btn" value="0">Enregistre</button>
+                        <button type="submit" class="btn btn-primary" name="btn" value="0">Enregistrer</button>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn btn-primary" name="btn" value="1">Enregistre & Ajouter un nouveaux produit</button>
+                        <button type="submit" class="btn btn-primary" name="btn" value="1">Enregistrer & Ajouter un nouveaux produit</button>
                     </div>
                 </div>
          </form>
