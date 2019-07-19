@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <h1>Récapitulatif de la collecte avant validation</h1>
-        <table class="table" id="tableCollect">
+        <table class="table table-hover text-center" id="tableCollect">
             <thead>
               <tr>
                 <th scope="col">#</th>

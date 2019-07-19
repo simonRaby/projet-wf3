@@ -10,7 +10,7 @@
             <form action="" method="POST" id="formulaire">
                 <div class="card">
                     <div class="card-header">
-                        <h1>Article</h1>
+                        <h2>Article</h2>
                     </div>
 
                         @csrf
@@ -58,7 +58,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-6">
-                                    <h1>Déclinaison(s)</h1>
+                                    <h2>Déclinaison(s)</h2>
                                 </div>
                                 <div class="col-6 text-right">
                                         <i class="fas fa-plus-circle est-logo"></i>

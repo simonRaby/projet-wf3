@@ -12,7 +12,7 @@
         </div>
 
     @endif
-    <table class="table table-bordered table-striped" id="collects-table">
+    <table class="table table-hover text-center" id="collects-table">
             <thead>
                 <tr>
                     <th>Id</th>

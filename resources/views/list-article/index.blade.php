@@ -10,7 +10,7 @@
                     {{ session('successMessage') }}
                 </div>
             @endif
-            <table class="table table-bordered table-striped" id="articles-table">
+            <table class="table table-hover text-center" id="articles-table">
                 <thead>
                 <tr>
                     <th>Id</th>

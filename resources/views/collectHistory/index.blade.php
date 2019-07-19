@@ -24,7 +24,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade active in" id="users">
-                    <table class="table table-bordered table-striped" id="history-table-validate">
+                    <table class="table table-hover text-center" id="history-table-validate">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -39,7 +39,7 @@
                     </table>
                 </div>
                 <div class="tab-pane fade" id="posts">
-                    <table class="table table-bordered table-striped" id="history-table-waiting">
+                    <table class="table table-hover text-center" id="history-table-waiting">
                         <thead>
                             <tr>
                                 <th>Id</th>
