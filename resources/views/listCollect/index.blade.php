@@ -30,7 +30,7 @@
 
 @section('script')
     <script>
-        // Fonction de creation de tableau en utilisa  nt le package datatable de yajra
+        // Fonction de creation de tableau en utilisant  nt le package datatable de yajra
         $(function() {
             let table =  $('#collects-table').DataTable({
                 processing: true,

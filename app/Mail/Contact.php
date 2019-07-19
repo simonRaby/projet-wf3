@@ -15,17 +15,20 @@ class Contact extends Mailable
     public $content;
     public $email;
     public $name;
+    public $chiefContact;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($title, $content, $email, $name)
+    public function __construct($title, $content, $email, $name, $chiefContact = NULL )
     {
         $this->title = $title;
         $this->content = $content;
         $this->email = $email;
         $this->name = $name;
+        $this->chiefContact = $chiefContact;
+
     }
 
     /**
@@ -37,6 +40,6 @@ class Contact extends Mailable
     {
         return $this->from($this->email, $this->name)
             ->subject($this->title)
-            ->view('layouts.email-contact');
+            ->view('layouts.email-contact')->with([$this->content, $this->chiefContact]);
     }
 }
