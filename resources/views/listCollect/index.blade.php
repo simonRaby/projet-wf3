@@ -1,18 +1,18 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <h1>Liste des collectes en attente</h1>
-     {{-- Message en session flash si le mail c'esy bien envoyé --}}
-     @if(session()->has('successMessage'))
-        <div class="alert alert-success">
-            {{ session('successMessage') }}
-            <p>Télécharger le bon de collecte au format pdf</p>
-            <a href="/bonCollectPdf?action=download&collectId={{ session('collectId') }}" class="btn btn-primary">Télécharger</a>
-        </div>
-
-    @endif
-    <table class="table table-bordered table-striped" id="collects-table">
+<div class="container-fluid est-test">
+    <div class="container">
+        <h1>Liste des collectes en attente</h1>
+        {{-- Message en session flash si le mail c'esy bien envoyé --}}
+        @if(session()->has('successMessage'))
+            <div class="alert alert-success">
+                {{ session('successMessage') }}
+                <p>Télécharger le bon de collecte au format pdf</p>
+                <a href="/bonCollectPdf?action=download&collectId={{ session('collectId') }}" class="btn btn-primary">Télécharger</a>
+            </div>
+        @endif
+        <table class="table table-hover text-center" id="collects-table">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -25,12 +25,13 @@
                 </tr>
             </thead>
         </table>
+    </div>
 </div>
 @endsection
 
 @section('script')
     <script>
-        // Fonction de creation de tableau en utilisa  nt le package datatable de yajra
+        // Fonction de creation de tableau en utilisant  nt le package datatable de yajra
         $(function() {
             let table =  $('#collects-table').DataTable({
                 processing: true,

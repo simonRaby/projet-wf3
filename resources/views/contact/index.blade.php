@@ -22,7 +22,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12">
                 <h2>Nous joindre</h2>
                  {{-- Message en session flash si le mail c'esy bien envoyé --}}
                 @if(session()->has('successMessage'))
@@ -83,7 +83,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-6 text-right">
+            <div class="col-md-6 text-right col-sm-12">
                 <h2>Nous trouver</h2>
                 <h3>Adresse</h3>
                 <p>1 Rue Bouquière<br>

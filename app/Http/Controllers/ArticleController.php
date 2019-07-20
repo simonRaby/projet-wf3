@@ -17,8 +17,8 @@ class ArticleController extends Controller
         $articles['name'] = $article->name;
         $articles['category'] = $article->category->name;
         $articles['gender'] = $article->gender->label;
-        $articles['rank'] =$article->rank->label;
-        $articles['img'] = $article->img;
+        $articles['rank'] = $article->rank->label;
+        //$articles['img'] = $article->img;
         foreach ($article->associationArticle as $assoc) {
             $articles['declinations'][$assoc->color->label][$assoc->size->label] = $assoc->stock;
             $articles['id'][$assoc->color->label][$assoc->size->label] = $assoc->id;
@@ -28,21 +28,22 @@ class ArticleController extends Controller
         return view('article.index')->with('articles', $articles);
     }
 
-    public function Vendu(request $request){
+    public function Vendu(request $request)
+    {
 
 
 
 
-            foreach($request->vendu as $key => $val){
-                if( $val != null){
+        foreach ($request->vendu as $key => $val) {
+            if ($val != null) {
 
-                   $total[$key]= $val;
-                   $data= AssociationArticle::find($key);
-                   $stock = (int)$data['stock'] -  (int)$request->vendu[$key];
-                   $data->stock = $stock;
-                   $data->save();
-                }
+                $total[$key] = $val;
+                $data = AssociationArticle::find($key);
+                $stock = (int) $data['stock'] -  (int) $request->vendu[$key];
+                $data->stock = $stock;
+                $data->save();
             }
+        }
         $id = $request->id_product;
         $article = Article::find($id);
 
@@ -50,8 +51,8 @@ class ArticleController extends Controller
         $articles['name'] = $article->name;
         $articles['category'] = $article->category->name;
         $articles['gender'] = $article->gender->label;
-        $articles['rank'] =$article->rank->label;
-        $articles['img'] =$articles->img;
+        $articles['rank'] = $article->rank->label;
+        //$articles['img'] =$articles->img;
         foreach ($article->associationArticle as $assoc) {
             $articles['declinations'][$assoc->color->label][$assoc->size->label] = $assoc->stock;
             $articles['id'][$assoc->color->label][$assoc->size->label] = $assoc->id;
@@ -60,6 +61,5 @@ class ArticleController extends Controller
 
 
         return redirect()->route('article', ['id' => $id])->with('articles', $articles);
-
     }
 }

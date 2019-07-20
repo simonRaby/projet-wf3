@@ -180,8 +180,10 @@ return [
         /**
          * pdf provider
          */
-
         Barryvdh\DomPDF\ServiceProvider::class,
+
+        //qrcode service provider
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
 
     ],
 
@@ -236,6 +238,8 @@ return [
         //pdf alias
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        //QRcode alias
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 

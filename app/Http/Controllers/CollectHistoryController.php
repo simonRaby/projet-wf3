@@ -24,7 +24,7 @@ class CollectHistoryController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function anyData()
+    public function tableCollectValidate()
     {
 
         $collects = Collect::with('status')->where('status_id', '!=', 1)->where('partner_id', '=', Auth::user()->partner_id)->get();
@@ -36,6 +36,28 @@ class CollectHistoryController extends Controller
                 }
             }
             $collect->quantity_collected = $qty;
+        }
+
+        return Datatables::of($collects)->make(true);
+    }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function tableCollectWaiting()
+    {
+
+        $collects = Collect::with('status')->where('status_id', '=', 1)->where('partner_id', '=', Auth::user()->partner_id)->get();
+        foreach ($collects as $collect) {
+            $qty = 0;
+            foreach ($collect->article as $article) {
+                foreach ($article->associationArticle as $assoc) {
+                    $qty += $assoc->quantity;
+                }
+            }
+            $collect->quantity = $qty;
         }
 
         return Datatables::of($collects)->make(true);
