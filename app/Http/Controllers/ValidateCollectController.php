@@ -51,7 +51,6 @@ class ValidateCollectController extends Controller
                 $association = AssociationArticle::find($id);
                 $association->is_rejected = 1;
                 $association->save();
-
                 $toBeBanned[] = $id;
             }
         }
@@ -61,6 +60,7 @@ class ValidateCollectController extends Controller
                 $allRejected = false;
                 $association = AssociationArticle::find($id);
                 $association->stock = $qtyCollected;
+                $association->quantity_collected = $qtyCollected;
                 $association->is_collected = 1;
                 if ($qtyCollected != $quantity[$id]) {
                     $collectError = true;

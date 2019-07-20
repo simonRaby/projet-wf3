@@ -4,14 +4,15 @@
     <div class="container-fluid est-test">
         <div class="container">
             <h1>Liste des partenaires</h1>
+            {{--affichage des messages de succès--}}
             @if (isset($successMessage))
                 <div class="alert alert-success alert-block">
                     <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{$successMessage}}</strong>
+                    <strong>{{ $successMessage}}</strong>
                 </div>
             @endif
-            <table class="table table-bordered table-striped" id="partnerData">
-                <thead class="bg-success">
+            <table class="table table-hover text-center" id="partnerData">
+                <thead >
                     <tr>
                         <th>Id</th>
                         <th>Partenaire</th>

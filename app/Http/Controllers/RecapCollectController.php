@@ -95,7 +95,7 @@ class RecapCollectController extends Controller
                 $newArticle->qrcode_img = $qrName . '.svg';
                 $newArticle->save();
 
-                QrCode::size(500)->generate('https://www.eos.test/article?id=' . $newArticle->id, 'storage/images/qr/' . $qrName . '.svg');
+                QrCode::size(500)->generate('https://projet-wf3/article?id=' . $newArticle->id, 'storage/images/qr/' . $qrName . '.svg');
 
                 foreach ($article['declinations'] as $declination) {
                     $newDeclination = new AssociationArticle;

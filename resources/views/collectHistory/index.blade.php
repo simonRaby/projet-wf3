@@ -70,7 +70,7 @@
             function dataTable(){
                 if($(this).attr('id') == 'validate'){
                     if (!$.fn.dataTable.isDataTable('#history-table-validate')) {
-                        let table =  $('#history-table-validate').DataTable({
+                        let tableValidate =  $('#history-table-validate').DataTable({
                             processing: true,
                             serverSide: true,
                             ajax: '{!! route('collectHistoryValidate') !!}',
@@ -129,7 +129,7 @@
                 }else{
                     //tableau waiting
                     if (!$.fn.dataTable.isDataTable('#history-table-waiting')) {
-                        let table =  $('#history-table-waiting').DataTable({
+                        let tableWaiting =  $('#history-table-waiting').DataTable({
                             processing: true,
                             serverSide: true,
                             ajax: '{!! route('collectHistoryWaiting') !!}',
@@ -174,10 +174,10 @@
             }
 
             // fonction de redirection on click avec l'id de la collect passé en get
-            $('#history-table-validate tbody').on( 'click', 'button', function () {
+            $('.container').on( 'click', 'button', function () {
 
-                var data = table.row( $(this).parents('tr') ).data();
-                window.location.href= "/bonCollectPdfHistory?action=download&collectId="+data['id'];
+                var data = $(this).parents('tr').children(":first").html();
+                window.location.href= "/bonCollectPdfHistory?action=download&collectId="+data;
             } );
 
         });

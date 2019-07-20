@@ -13,6 +13,15 @@
                 <div class="col-12 text-center">
                     <h1 class="est-h1">Scan QrCode</h1>
                 </div>
+{{--                <section class="scans">--}}
+{{--                    <h2>Scans</h2>--}}
+{{--                    <ul v-if="scans.length === 0">--}}
+{{--                        <li class="empty">No scans yet</li>--}}
+{{--                    </ul>--}}
+{{--                    <transition-group name="scans" tag="ul">--}}
+{{--                        <li v-for="scan in scans" :key="scan.date" :title="scan.content">{{ scan.content }}</li>--}}
+{{--                    </transition-group>--}}
+{{--                </section>--}}
             </div>
             <div class="row">
                 <div class="col-12 text-center">

@@ -63,14 +63,16 @@ class AdminAddMemberController extends Controller
         }
 
         $member = new User();
-        $member->lastname = $request['lastName'];
-        $member->firstname = $request['firstName'];
-        $member->email = $request['email'];
-        $member->password = Hash::make($request['passwordMember']);
+        $member->lastname = $values['lastName'];
+        $member->firstname = $values['firstName'];
+        $member->email = $values['email'];
+        $member->password = Hash::make($values['passwordMember']);
         $member->role_id = 2;
         $member->save();
 
-        return Redirect::back()->with('successMessage', 'Membre ajouté avec succès');
+        $members = User::all()->where('role_id', '=', '2')->where('delete_at','=', NULL);
+
+        return view('listMember.index')->with('successMessage','Membre ajouté avec succès')->with('members', $members);
     }
 
 
@@ -113,12 +115,12 @@ class AdminAddMemberController extends Controller
                 ->withInput();
         }
 
-        $update = User::find($request->id);
-        $update->lastname = $request['lastName'];
-        $update->firstname = $request['firstName'];
-        $update->email = $request ['email'];
-        if (isset($request['passwordMember'])) {
-            $update->password = Hash::make($request['passwordMember']);
+        $update = User::find($values['id']);
+        $update->lastname = $values['lastName'];
+        $update->firstname = $values['firstName'];
+        $update->email = $values ['email'];
+        if (isset($values['passwordMember'])) {
+            $update->password = Hash::make($values['passwordMember']);
         }
         $update->update();
 

@@ -62,8 +62,8 @@
                     @endif
                 </tbody>
             </table>
-            <a href="/recapCollectValidate" class="btn btn-primary">Valider</a>
-            <a href="/recapCollectCancel" class="btn btn-primary">Annuler</a>
+            <a href="/recapCollectValidate" class="btn btn-primary">Valider la collecte</a>
+            <a href="/recapCollectCancel" class="btn btn-primary">Annuler la collecte</a>
         </div>
     </div>
 

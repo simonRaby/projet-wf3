@@ -20,8 +20,10 @@ class ArticleController extends Controller
         $articles['rank'] = $article->rank->label;
         //$articles['img'] = $article->img;
         foreach ($article->associationArticle as $assoc) {
-            $articles['declinations'][$assoc->color->label][$assoc->size->label] = $assoc->stock;
-            $articles['id'][$assoc->color->label][$assoc->size->label] = $assoc->id;
+            if($assoc->is_collected){
+                $articles['declinations'][$assoc->color->label][$assoc->size->label] = $assoc->stock;
+                $articles['id'][$assoc->color->label][$assoc->size->label] = $assoc->id;
+            }
         }
 
 

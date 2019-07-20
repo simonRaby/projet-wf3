@@ -46,17 +46,15 @@ body{
         }
         margin-bottom: -50px;
         margin-top: -15px;
-
     }
     .navbar-collapse{
         align-self: flex-end;
-
         a.nav-link{
             color: #fff;
         }
     }
-
 }
+//animation hover on link
 .navbar-nav{
   top:0;
   text-align:center;
@@ -72,7 +70,7 @@ body{
       display:block;
       padding:5px 0;
       font-family:'Open Sans';
-      font-size:0.9rem;
+      font-size:1.1rem;
       line-height:1;
       font-weight:bold;
       position:relative;
@@ -154,9 +152,17 @@ h1, h2{
         border-color: rgb(3, 22, 143);
     }
 }
+//button.btn-outline-success, a.btn-outline-success{
+//    color: #B4FF80;
+//    border-color: #B4FF80;
+//    &:hover{
+//        background-color: #B4FF80;
+//        border-color: #B4FF80;
+//    }
+//}
 table.table{
     thead{
-        background-color: #B4FF80;
+        background-color: #FF8D65;
     }
     td{
         vertical-align: middle;
@@ -202,5 +208,25 @@ table.table{
 .card{
     i{
         cursor: pointer;
+    }
+}
+
+/******************** home  ******************/
+
+.home{
+    .image{
+
+        margin: 0;
+        padding: 0;
+        img{
+            width: 100%;
+            object-fit: cover;
+            height: 300px;
+            margin-top: 25px;
+        }
+    }
+    p{
+        font-size: 1.2rem;
+        padding: 20px;
     }
 }

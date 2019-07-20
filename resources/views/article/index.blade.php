@@ -36,10 +36,11 @@
                                         <span class="text-left">Taille : {{$size}}  --  Quantité {{$quantity}} </span>
                                         @endif
                         <div>
-{{--                            @if()--}}
+
+                            @if(!Auth::guest())
                             <input type="number" id="tentacles" class="est-input text-center" name="vendu[{{ $articles['id'][$color][$size]}}]"  min="0" max="{{ $quantity }}">
                             <input type="hidden" name="id_product" value="{{ $articles['id_product'] }}">
-{{--                            @endif--}}
+                            @endif
                         </div>
                                 </li>
                         @endforeach

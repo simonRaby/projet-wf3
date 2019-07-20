@@ -62,7 +62,6 @@ class AdminAddPartnerController extends Controller
     {
         $values = $request->all();
         $values['partnerSiret'] = str_replace(' ', '', $request['partnerSiret']);
-        $value['partnerName'] = strtoupper($request['partnerName']);
 
         //On défini le type de donnée que j'accepte dans mes champs de saisi
 
@@ -111,20 +110,20 @@ class AdminAddPartnerController extends Controller
 
         //Une fois tous les champs de saisis contrôlé j'insére les données la bdd
         $partner = new Partner();
-        $partner->name = $request['partnerName'];
-        $partner->tel = $request['partnerPhone'];
-        $partner->address = $request['partnerAddress'];
-        $partner->ville_insee = $request['selectCity'];
-        $partner->siret = str_replace(' ', '', $request['partnerSiret']);
+        $partner->name = $values['partnerName'];
+        $partner->tel = $values['partnerPhone'];
+        $partner->address = $values['partnerAddress'];
+        $partner->ville_insee = $values['selectCity'];
+        $partner->siret = $values['partnerSiret'];
         $partner->save();
 
         //On réalise la même opération pour les données relative à la table users
         $partnerUser = new User();
-        $partnerUser->firstname = $request['partnerDirectorFstNme'];
-        $partnerUser->email = $request['partnerMail'];
+        $partnerUser->firstname = $values['partnerDirectorFstNme'];
+        $partnerUser->email = $values['partnerMail'];
         $partnerUser->password = Hash::make('eos1234test');
         $partnerUser->role_id = 3;
-        $partnerUser->lastname = $request['partnerDirectorLstNme'];
+        $partnerUser->lastname = $values['partnerDirectorLstNme'];
 
         //Afin de lier les données enregistré dans la table partners au responsable stocké dans la table users,
         //On récupère l'id du partenaire et l'enregistre dans la colonne de la clé étrangère prévu à cette effet
@@ -145,7 +144,7 @@ class AdminAddPartnerController extends Controller
         $title = 'Mail de Validation';
         $name = 'Eos Association';
         $email = 'contact@eos.com';
-        $chiefContact = 'Mr, Mdme ' . $user['partnerDirectorLstNme'];
+        $chiefContact = 'M, Mme ' . $user['partnerDirectorLstNme'];
 
         $content = 'Nous avons le plaisir, de vous annoncer que suite à notre échange et votre souhait de nous soutenir dans notre démarche auprès des plus démunis, que notre administrateur(trice)à créé votre espace personnel sur notre plateforme Eos' . '<br>' .
             'Je vous invite donc dès à présent à créer votre mot de passe ' . '<a href="https://projet-wf3.test/password/reset/' . $token . '?email=' . $user['partnerMail'] . '">ici.</a>' . '<br>' .
@@ -157,7 +156,7 @@ class AdminAddPartnerController extends Controller
         Mail::to($user['partnerMail'])->send(new Contact($title, $content, $email, $name, $chiefContact));
 
 
-        return view('adminAddPartner.index')->with('successMessage', 'Partenaire ajouté avec succès, un mail de confirmation lui a été transmis.');
+        return view('listPartner.index')->with('successMessage', 'Partenaire ajouté avec succès, un mail de confirmation lui a été transmis.');
 
     }
 
@@ -182,6 +181,8 @@ class AdminAddPartnerController extends Controller
     {
 
         $values = $request->all();
+        $values['partnerSiret'] = str_replace(' ', '', $request['partnerSiret']);
+
         $rules = [
             'partnerName' => 'string|max:30|required',
             'partnerDirectorFstNme' => 'string|max:30|required',
@@ -189,7 +190,7 @@ class AdminAddPartnerController extends Controller
             'partnerAddress' => 'string|max:60|required',
             'selectCity' => 'required|regex:/[0-9]{5}/',
             'partnerMail' => 'email|required',
-            'partnerSiret' => 'required|regex:/[0-9]/^\s*$/{14}/',
+            'partnerSiret' => 'required|regex:/[0-9]{14}/',
             'partnerPhone' => ['required', 'regex:/^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/'],
         ];
 
@@ -220,17 +221,17 @@ class AdminAddPartnerController extends Controller
         }
 
         $updateUser = User::find($request->id);
-        $updateUser->firstname = $request['partnerDirectorFstNme'];
-        $updateUser->email = $request['partnerMail'];
-        $updateUser->lastname = $request['partnerDirectorLstNme'];
+        $updateUser->firstname = $values['partnerDirectorFstNme'];
+        $updateUser->email = $values['partnerMail'];
+        $updateUser->lastname = $values['partnerDirectorLstNme'];
         $updateUser->update();
 
         $updatePartner = Partner::find($updateUser->partner_id);
-        $updatePartner->name = $request['partnerName'];
-        $updatePartner->tel = $request['partnerPhone'];
-        $updatePartner->address = $request['partnerAddress'];
-        $updatePartner->ville_insee = $request['selectCity'];
-        $updatePartner->siret = $request['partnerSiret'];
+        $updatePartner->name = $values['partnerName'];
+        $updatePartner->tel = $values['partnerPhone'];
+        $updatePartner->address = $values['partnerAddress'];
+        $updatePartner->ville_insee = $values['selectCity'];
+        $updatePartner->siret = $values['partnerSiret'];
         $updatePartner->update();
 
 

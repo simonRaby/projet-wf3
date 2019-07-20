@@ -45,7 +45,7 @@ trait PdfPerso
                     $collectPdf['articles'][$i]['size'] = $assoc->size->label;
                     $collectPdf['articles'][$i]['color'] = $assoc->color->label;
                     $collectPdf['articles'][$i]['quantity'] = $assoc->quantity;
-                    $collectPdf['articles'][$i]['quantityCollected'] = $assoc->quantity_collected ?: 0;
+                    $collectPdf['articles'][$i]['quantityCollected'] = $assoc->quantity_collected ? $assoc->quantity_collected : 0;
                     $i++;
                 }
             }

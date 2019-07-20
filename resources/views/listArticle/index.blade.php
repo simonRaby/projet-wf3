@@ -51,7 +51,7 @@
                         data: 'qr_code',
                         name: 'qr_code' ,
                         "render": function (data, type, full, meta) {
-                                            return "<a href=\"https://www.eos.test/storage/images/qr/"+ data +"\" target=\"_blank\"><img src=\"/storage/images/qr/" + data + "\" height=\"50\"/>";
+                                            return "<a href=\"https://projet-wf3.test/storage/images/qr/"+ data +"\" target=\"_blank\"><img src=\"/storage/images/qr/" + data + "\" height=\"50\"/>";
                                         }
                     },
                     { data: 'action', name: 'action' },

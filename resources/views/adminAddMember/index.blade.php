@@ -3,13 +3,6 @@
 @section("content")
     <div class="container text-center">
         <div class="col-5 offset-3">
-            {{--affichage des messages de succès--}}
-            @if (isset($successMessage))
-                <div class="alert alert-success alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{ $successMessage}}</strong>
-                </div>
-            @endif
             @if(isset($edit))
                 <h2>Modifier les informations d'un membre</h2>
             @else

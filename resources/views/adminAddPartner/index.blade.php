@@ -4,12 +4,6 @@
 
     <div class="container text-center">
         <div class="col-5 offset-3">
-            @if(isset($successMessage))
-                <div class="alert alert-success alert-block">
-                    <strong>{{$successMessage}}</strong>
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                </div>
-            @endif
             @if(isset($edit))
                 <h2>Modifier les informations d'un partenaire</h2>
             @else
