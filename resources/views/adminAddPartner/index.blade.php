@@ -1,21 +1,15 @@
 {{--formulaire d'ajout de partenaire--}}
 @extends('layouts.master')
 @section('content')
-
     <div class="container text-center">
         <div class="col-5 offset-3">
-            @if(isset($successMessage))
-                <div class="alert alert-success alert-block">
-                    <strong>{{$successMessage}}</strong>
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                </div>
-            @endif
             @if(isset($edit))
                 <h2>Modifier les informations d'un partenaire</h2>
             @else
                 <h2>Ajouter un partenaire</h2>
             @endif
-            <form action="{{isset($edit)?'updateAdminPartner':'adminAddPartner'}}" method="post" name="{{isset($edit)?'updatePartner':'AddPartner'}}">{{csrf_field()}}
+            <form action="{{isset($edit)?'updateAdminPartner':'adminAddPartner'}}" method="post"
+                  name="{{isset($edit)?'updatePartner':'AddPartner'}}">{{csrf_field()}}
                 <div class="form-group">
                     <label for="partnerName">Raison Sociale</label><br>
                     <input class="form-control"

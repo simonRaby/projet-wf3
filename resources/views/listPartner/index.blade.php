@@ -2,10 +2,11 @@
 @section('content')
     <div class="container">
         <h1>Liste des partenaires</h1>
+        {{--affichage des messages de succès--}}
         @if (isset($successMessage))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>{{$successMessage}}</strong>
+                <strong>{{ $successMessage}}</strong>
             </div>
         @endif
         <table class="table table-bordered table-striped" id="partnerData">
@@ -23,7 +24,8 @@
             </tr>
             </thead>
         </table>
-        <a href="adminAddPartner" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Ajouter un partenaire</a>
+        <a href="adminAddPartner" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Ajouter un
+            partenaire</a>
     </div>
 @endsection
 @section('script')
