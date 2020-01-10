@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ColorTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
         $this->call(SizesTableSeeder::class);
-        $this->call(PartnersTableSeeder::class);
-        $this->call(CollectsTableSeeder::class);
+       // $this->call(PartnersTableSeeder::class);
+       // $this->call(CollectsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
-        $this->call(ArticlesTableSeeder::class);
-        $this->call(AssociationArticleTableSeeder::class);
+       // $this->call(ArticlesTableSeeder::class);
+       // $this->call(AssociationArticleTableSeeder::class);
     }
 }

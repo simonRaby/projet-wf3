@@ -1,16 +1,17 @@
 @extends('layouts.master')
 @section('content')
+<div class="container-fluid est-test">
     <div class='container'>
-        {{--affichage des messages de succès--}}
-        @if (isset($successMessage))
-            <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>{{ $successMessage}}</strong>
-            </div>
-        @endif
+        <div class='col-8 offset-2'>
+            @if (isset($successMessage))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{$successMessage}}</strong>
+                </div>
+            @endif
             <h2>Membres de l'association</h2>
-            <table class="table table-striped">
-                <thead class="bg-success">
+            <table class="table table-hover text-center">
+                <thead>
                 <tr>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
@@ -38,10 +39,10 @@
                 @endif
                 </tbody>
             </table>
-                <a href="adminAddMember" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Ajouter un
-                    Membre</a>
+            <a href="adminAddMember" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Ajouter un Membre</a>
         </div>
     </div>
+</div>
 @endsection
 @section('script')
     <script>

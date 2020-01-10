@@ -14,7 +14,7 @@ class CollectsTableSeeder extends Seeder
     {
 
         $data[0] =[
-            'partner_id'    => 1,
+            'partner_id'    => 2,
             'status_id'     => 2,
             'collected_at'       => now(),
             'created_at'     => now(),
@@ -22,6 +22,12 @@ class CollectsTableSeeder extends Seeder
         $data[1] =[
             'partner_id'    => 4,
             'status_id'     => 3,
+            'collected_at'       => now(),
+            'created_at'     => now(),
+        ];
+        $data[1] =[
+            'partner_id'    => 4,
+            'status_id'     => 1,
             'collected_at'       => now(),
             'created_at'     => now(),
         ];

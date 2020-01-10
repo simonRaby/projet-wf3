@@ -15,52 +15,80 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home.index');
-});
-Route::get('/scan', 'ScanController@index');
+})->name('home');
 
 Auth::routes();
-Auth::routes(['verify' => true]);
 Auth::routes(['register' => false]);
-
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+Auth::routes(['reset' => true]);
 
 Route::get('/about', 'AboutController@index');
 
 Route::get('/contact', 'ContactController@index');
 Route::post('/contact', 'ContactController@store');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/list-collect-data', 'ListCollectController@anyData')->name('listcollectdata');
-Route::get('/list-collect', 'ListCollectController@index');
-Route::get('/validate-collect', 'ValidateCollectController@index');
-Route::post('/validate-collect', 'ValidateCollectController@store');
-
 Route::get('/scan', 'ScanController@index');
 
-Route::get('/article', 'ArticleController@index');
+Route::get('/article', 'ArticleController@index')->name('article');
+Route::post('/article', 'ArticleController@vendu');
 
-Route::get('listMember', 'ListMemberController@index');
-Route::get('listPartnerData', 'listPartnerController@listPartnerData')->name('listPartnerData');
-Route::get('listPartner', 'ListPartnerController@index');
 
-Route::get('adminAddMember', 'AdminAddMemberController@index');
-Route::post('adminAddMember', 'AdminAddMemberController@store');
+Route::group(['middleware' => ['auth']], function () {
 
-Route::get('updateAdminMember','AdminAddMemberController@edit');
-Route::post('updateAdminMember','AdminAddMemberController@update');
 
-Route::get('editAdminPartner','AdminAddPartnerController@edit');
-Route::post('updateAdminPartner', 'AdminAddPartnerController@update');
-Route::get('deleteAdminPartner', 'AdminAddPartnerController@delete');
+    Route::group(['middleware' => ['admin']], function () {
 
-Route::get('emailValidatePartner', function (){
-    return view('auth.verify');
+        Route::get('listMember', 'ListMemberController@index');
+
+        Route::get('listPartnerData', 'listPartnerController@listPartnerData')->name('listPartnerData');
+        Route::get('listPartner', 'ListPartnerController@index');
+
+        Route::get('adminAddMember', 'AdminAddMemberController@index');
+        Route::post('adminAddMember', 'AdminAddMemberController@store');
+        Route::get('updateAdminMember', 'AdminAddMemberController@edit');
+        Route::post('updateAdminMember', 'AdminAddMemberController@update');
+        Route::get('AjaxDeleteAdminMember', 'AdminAddMemberController@ajaxDeleteAdminMember');
+
+        Route::get('adminAddPartner', 'AdminAddPartnerController@index');
+        Route::post('adminAddPartner', 'AdminAddPartnerController@store');
+        Route::get('editAdminPartner', 'AdminAddPartnerController@edit');
+        Route::post('updateAdminPartner', 'AdminAddPartnerController@update');
+        Route::get('deleteAdminPartner', 'AdminAddPartnerController@delete');
+        Route::post('AjaxAdminAddPartner', 'AdminAddPartnerController@ajaxPostalCode');
+    });
+
+    Route::group(['middleware' => ['memberAdmin']], function () {
+
+        Route::get('/listCollect', 'ListCollectController@index')->name('listCollect');
+        Route::get('/listCollectData', 'ListCollectController@anyData')->name('listcollectdata');
+
+        Route::get('/validateCollect', 'ValidateCollectController@index');
+        Route::post('/validateCollect', 'ValidateCollectController@store');
+        Route::get('/bonCollectPdf', 'ValidateCollectController@pdfBonCollect');
+
+        Route::get('/listArticle', 'ListarticleController@index');
+        Route::get('/listArticle-data', 'ListarticleController@anyData')->name('listarticledata');
+    });
+
+    Route::group(['middleware' => ['partner']], function () {
+
+        Route::get('/recapCollect', 'RecapCollectController@index')->name('recapCollect');
+        Route::get('/recapCollectValidate', 'RecapCollectController@store');
+        Route::get('/recapCollectCancel', 'RecapCollectController@cancel');
+
+        Route::get('/collectHistory', 'CollectHistoryController@index');
+        Route::get('/collectHistoryValidate', 'CollectHistoryController@tableCollectValidate')->name('collectHistoryValidate');
+        Route::get('/collectHistoryWaiting', 'CollectHistoryController@tableCollectWaiting')->name('collectHistoryWaiting');
+        Route::get('/bonCollectPdfHistory', 'CollectHistoryController@pdfCollectHistory');
+
+        Route::get('/addArticle', 'AddArticleController@index');
+        Route::post('/addArticle', 'AddArticleController@add');
+        Route::get('/categoryAjax', 'AddArticleController@category');
+
+        Route::get('/AccountPartner', 'AccountPartnerController@index');
+        Route::get('/AccountPartner/update', 'AccountPartnerUpdateController@index');
+        Route::post('/AccountPartner/update', 'AccountPartnerUpdateController@edit');
+    });
 });
 
 
-Route::get('adminAddPartner','AdminAddPartnerController@index');
-Route::post('adminAddPartner','AdminAddPartnerController@store');
-
-Route::post('AjaxAdminAddPartner', 'AdminAddPartnerController@ajaxPostalCode');
-Route::get('AjaxDeleteAdminMember','AdminAddMemberController@ajaxDeleteAdminMember');
+Route::get('/home', 'HomeController@index')->name('home');

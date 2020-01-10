@@ -1,33 +1,36 @@
 @extends('layouts.master')
+
 @section('content')
-    <div class="container">
-        <h1>Liste des partenaires</h1>
-        {{--affichage des messages de succès--}}
-        @if (isset($successMessage))
-            <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>{{ $successMessage}}</strong>
-            </div>
-        @endif
-        <table class="table table-bordered table-striped" id="partnerData">
-            <thead class="bg-success">
-            <tr>
-                <th>Id</th>
-                <th>Partenaire</th>
-                <th>Responsable</th>
-                <th>Email</th>
-                <th>Téléphone</th>
-                <th>Adresse</th>
-                <th>ville</th>
-                <th>Modifier</th>
-                <th>Supprimer</th>
-            </tr>
-            </thead>
-        </table>
-        <a href="adminAddPartner" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Ajouter un
-            partenaire</a>
+    <div class="container-fluid est-test">
+        <div class="container">
+            <h1>Liste des partenaires</h1>
+            {{--affichage des messages de succès--}}
+            @if (isset($successMessage))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $successMessage}}</strong>
+                </div>
+            @endif
+            <table class="table table-hover text-center" id="partnerData">
+                <thead >
+                    <tr>
+                        <th>Id</th>
+                        <th>Partenaire</th>
+                        <th>Responsable</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Adresse</th>
+                        <th>ville</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+            </table>
+            <a href="adminAddPartner" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Ajouter un partenaire</a>
+        </div>
     </div>
 @endsection
+
 @section('script')
     <script>
         $(function () {

@@ -29,31 +29,31 @@ class UsersTableSeeder extends Seeder
             'password' => hash::make('0000'),
             'created_at'     => now(),
         ];
-        $data[2]=[
-            'partner_id' => '2',
-            'role_id' => '3',
-            'firstname' => 'Boutique',
-            'lastname' => 'Aigle',
-            'email' => 'boutique.aigle@gmail.com',
-            'password' => hash::make('0000'),
-            'created_at'     => now(),
-        ];
-        $data[3]=[
-            'partner_id' => '4',
-            'role_id' => '3',
-            'firstname' => 'Harrys',
-            'lastname' => 'Boutique',
-            'email' => 'Harrys.Boutique@gmail.com',
-            'password' => hash::make('0000'),
-            'created_at'     => now(),
-        ];
+//        $data[2]=[
+//            'partner_id' => '2',
+//            'role_id' => '3',
+//            'firstname' => 'Boutique',
+//            'lastname' => 'Aigle',
+//            'email' => 'boutique.aigle@gmail.com',
+//            'password' => hash::make('0000'),
+//            'created_at'     => now(),
+//        ];
+//        $data[3]=[
+//            'partner_id' => '4',
+//            'role_id' => '3',
+//            'firstname' => 'Harrys',
+//            'lastname' => 'Boutique',
+//            'email' => 'Harrys.Boutique@gmail.com',
+//            'password' => hash::make('0000'),
+//            'created_at'     => now(),
+//        ];
 
 
 
 
 
 
-        for($i=0; $i <4; $i++){
+        for($i=0; $i <2; $i++){
             User::insert($data[$i]);
         }
     }

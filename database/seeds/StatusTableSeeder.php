@@ -13,15 +13,15 @@ class StatusTableSeeder extends Seeder
     public function run()
     {
         $data[0] =[
-            'label'         => 'waiting',
+            'label'         => 'En Attente',
             'created_at'     => now(),
         ];
         $data[1] =[
-            'label'         => 'rejected',
+            'label'         => 'rejeté',
             'created_at'     => now(),
         ];
         $data[2] =[
-            'label'         => 'Collected',
+            'label'         => 'Collecté',
             'created_at'     => now(),
         ];
 

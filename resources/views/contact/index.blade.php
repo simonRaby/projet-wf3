@@ -6,7 +6,8 @@
          * element that contains the map. */
         #map {
           height: 250px;
-          width: 400px
+          width: 400px;
+          float: right;
 
         }
         /* Optional: Makes the sample page fill the window. */
@@ -21,7 +22,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12">
                 <h2>Nous joindre</h2>
                  {{-- Message en session flash si le mail c'esy bien envoyé --}}
                 @if(session()->has('successMessage'))
@@ -82,7 +83,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-6 text-right">
+            <div class="col-md-6 text-right col-sm-12">
                 <h2>Nous trouver</h2>
                 <h3>Adresse</h3>
                 <p>1 Rue Bouquière<br>
@@ -101,15 +102,24 @@
 @section('script')
 <script>
     $(function() {
-    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     });
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXs_o_Bfmlqf4VcoibNS9GdjsbUY4HKiA"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXs_o_Bfmlqf4VcoibNS9GdjsbUY4HKiA&callback=initMap" async defer></script>
 <script>
-var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
-});
+// Initialize and add the map
+function initMap() {
+  // The Association location
+  var Asso = {lat: 44.836908, lng:  -0.571576};
+  // The map, centered at the association
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: Asso,
+    zoom: 15
+    });
+  // The marker, positioned at the association
+  var marker = new google.maps.Marker({position: Asso, map: map});
+}
+
 </script>
 
 @endsection

@@ -21,6 +21,7 @@ class Partner extends Model
     {
         return $this->hasMany(Article::class);
     }
+
     public function user()
     {
         return $this->hasMany(User::class);
